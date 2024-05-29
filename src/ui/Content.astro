@@ -1,0 +1,31 @@
+---
+---
+
+<style>
+  .container {
+    display: grid;
+    grid-template-rows: 400px 1fr;
+    background: linear-gradient(to bottom, #de3129, #440f0d);
+    height: 100%;
+    border-radius: var(--border-radius);
+  }
+
+  .playlist {
+    --translucid-color: color-mix(in srgb, var(--medium-bgcolor), transparent 65%);
+
+    background: linear-gradient(
+      to bottom,
+      var(--translucid-color) 0 25%,
+      var(--medium-bgcolor) 80% 100%
+    );
+  }
+</style>
+
+<div class="container">
+
+  <header>
+
+  </header>
+  <div class="playlist"></div>
+
+</div>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@/layout/base.astro";
+import Titlebar from "@/ui/Titlebar.astro";
+import Sidebar from "@/ui/Sidebar.astro";
+import Content from "@/ui/Content.astro";
+import Player from "@/ui/Player.astro";
+
+const title = "SpotiManz";
+---
+
+<style>
+  .container {
+    display: grid;
+    grid-template-rows: 3rem 1fr 6rem;
+    height: 100%;
+    background: var(--dark-bgcolor);
+    padding: 0 0.5rem;
+  }
+
+  .titlebar {
+
+  }
+
+  .sidebar {
+
+  }
+
+  .player {
+    background: var(--dark-bgcolor);
+  }
+
+  .content-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+</style>
+
+<BaseLayout title={title}>
+
+  <div class="container">
+    <div class="titlebar">
+      <Titlebar />
+    </div>
+    <div class="content-container">
+      <div class="sidebar">
+        <Sidebar />
+      </div>
+      <div class="content">
+        <Content />
+      </div>
+    </div>
+    <div class="player">
+      <Player />
+    </div>
+  </div>
+
+</BaseLayout>
