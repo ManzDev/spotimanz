@@ -1,10 +1,12 @@
 ---
+import MainSidebar from "./MainSidebar.astro";
+import TopSidebar from "./TopSidebar.astro";
 ---
 
 <style>
   .container {
     display: grid;
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: 125px 1fr;
     height: 100%;
     gap: 1rem 0;
   }
@@ -22,9 +24,9 @@
 
 <div class="container">
   <div class="top-sidebar">
-
+    <TopSidebar />
   </div>
   <div class="main-sidebar">
-
+    <MainSidebar />
   </div>
 </div>

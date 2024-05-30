@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+const { src, title, subtitle, pinned } = Astro.props;
+
+const image = `/playlist/${src}.webp`;
+---
+
+<style>
+  .playlist-item {
+    --avatar-size: 55px;
+
+    display: grid;
+    grid-template-columns: calc(var(--avatar-size) * 1.15) 1fr;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.25rem;
+    border-radius: 8px;
+
+    &:hover {
+      background: var(--light-bgcolor);
+      cursor: pointer;
+    }
+
+    & img {
+      width: var(--avatar-size);
+      height: var(--avatar-size);
+      border-radius: 5px;
+    }
+
+    & .data {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+
+      & .title {
+        font-weight: 400;
+      }
+
+      & [data-icon] {
+        color: var(--accent-color);
+      }
+
+      & .subtitle-container {
+        color: var(--dark-textcolor);
+        font-weight: 500;
+      }
+    }
+  }
+</style>
+
+<div class="playlist-item">
+
+  <img src={image} alt={title} />
+
+  <div class="data">
+    <strong class="title">{title}</strong>
+    <div class="subtitle-container">
+      {pinned && <Icon name="pinned" />}
+      <span>{subtitle}</span>
+    </div>
+  </div>
+
+</div>

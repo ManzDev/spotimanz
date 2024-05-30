@@ -1,0 +1,120 @@
+---
+import playlist from "@/data/playlist.json";
+import PlayListItem from "@/components/PlayListItem.astro";
+import RowItem from "@/components/RowItem.astro";
+import { Icon } from "astro-icon/components";
+
+const sortRule = (a, b) => a.pinned ? -1 : 1;
+---
+
+<style>
+  .container {
+    display: grid;
+    grid-template-rows: 125px 1fr;
+    height: 100%;
+  }
+
+  .titlebar-container {
+
+    display: grid;
+    grid-template-columns: 0.75fr 0.25fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100px;
+
+    & .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0 1rem;
+    }
+
+    & .filters {
+      display: flex;
+      gap: 0.25rem;
+      padding: 1rem;
+      grid-column-start: 1;
+      grid-column-end: 3;
+
+      & > div {
+        background: var(--light-bgcolor);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-family: var(--default-font);
+        font-size: 0.8rem;
+      }
+
+    }
+  }
+
+  .playlist-container {
+    font-family: var(--default-font);
+    font-size: 0.9rem;
+
+    & .search-container {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+
+      & input[type="search"] {
+        border: 0;
+        background: transparent;
+        padding: 0.4rem 0;
+        margin: 0 0.5rem;
+        width: 150px;
+      }
+
+      & > span {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+    }
+
+    & .playlist {
+      display: flex;
+      flex-direction: column;
+      gap: 0 0.5rem;
+      padding: 0 0.5rem;
+      height: 100%;
+    }
+
+  }
+</style>
+
+<div class="container">
+
+  <div class="titlebar-container">
+      <div class="titlebar">
+        <RowItem icon="books" label="Tu biblioteca" />
+      </div>
+      <div class="buttons">
+        <Icon name="plus" />
+        <Icon name="arrow-right" />
+      </div>
+      <div class="filters">
+        <div>Listas</div>
+        <div>Artistas</div>
+        <div>Álbumes</div>
+      </div>
+  </div>
+
+  <div class="playlist-container">
+
+    <div class="search-container">
+      <Icon name="search" />
+      <input type="search">
+      <span>Recientes <Icon name="list" /></span>
+    </div>
+
+    <div class="playlist">
+
+      { playlist
+          .sort((a,b) => sortRule(a))
+          .map(pItem => <PlayListItem {...pItem} />) }
+
+    </div>
+
+  </div>
+
+</div>
