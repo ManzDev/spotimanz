@@ -1,6 +1,6 @@
 [
-  { "src": "pato", "title": "Resolví el problema", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "src": "react", "title": "No quiero cambiar", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "src": "cat", "title": "Tytomix", "subtitle": "Lista · Tyto", "pinned": true },
-  { "src": "viernes", "title": "He desplegado a producción", "subtitle": "Lista · MAXI/Single", "pinned": false }
+  { "src": "musicdev", "title": "music.manz.dev", "subtitle": "Lista · MusicDev", "pinned": true },
+  { "src": "resolvi-el-problema", "title": "Resolví el problema", "subtitle": "Lista · MAXI/Single", "pinned": false },
+  { "src": "no-quiero-cambiar", "title": "No quiero cambiar", "subtitle": "Lista · MAXI/Single", "pinned": false },
+  { "src": "el-ultimo-humano", "title": "El último humano", "subtitle": "Lista · MAXI/Single", "pinned": false }
 ]

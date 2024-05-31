@@ -1,0 +1,64 @@
+---
+const { index, title, artist, src, album, date, duration } = Astro.props;
+
+const FOLDER = "musicdev";
+const image = `/playlist/${FOLDER}/${src}.webp`;
+---
+
+<style>
+  .row-item {
+    display: grid;
+    grid-template-columns: var(--playlist-format);
+    font-family: var(--default-font);
+    font-size: 1rem;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+
+    &:hover {
+      background: #ffffff4d;
+      cursor: pointer;
+    }
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    & img {
+      --size: 64px;
+
+      width: var(--size);
+      height: var(--size);
+      border-radius: 5px;
+    }
+
+    & .group {
+      display: flex;
+      flex-direction: column;
+
+      & .artist {
+        color: var(--dark-textcolor);
+
+        .row-item:hover & {
+          color: #fff;
+        }
+      }
+    }
+  }
+</style>
+
+<div class="row-item">
+  <div class="num">{index + 1}</div>
+  <div class="title-container">
+    <img src={image} alt={title}>
+    <div class="group">
+      <div>{title}</div>
+      <div class="artist">{artist}</div>
+    </div>
+  </div>
+  <div>{album}</div>
+  <div>{date.substring(0, 10)}</div>
+  <div>{duration}</div>
+</div>

@@ -1,4 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
+import songs from "@/data/musicdev.json";
+import SongItem from "@/components/SongItem.astro";
 ---
 
 <style>
@@ -10,22 +13,189 @@
     border-radius: var(--border-radius);
   }
 
+  header {
+    display: flex;
+    flex-direction: column;
+
+    & .top {
+      display: flex;
+      padding: 1.25rem;
+
+      & :is(nav, .main) {
+        display: flex;
+        gap: 0.5rem;
+
+        & button {
+          --size: 30px;
+
+          width: var(--size);
+          height: var(--size);
+          border-radius: 50%;
+          border: 0;
+          background: #000a;
+
+          &[disabled] { background: #0004; }
+        }
+
+        & button.avatar {
+          background-image: url("/manzdev.png");
+          background-size: cover;
+          background-clip: padding-box;
+          border: 3px solid #000a;
+        }
+
+        & button.large {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          width: max-content;
+          border-radius: 50px;
+          padding-left: 0.5rem;
+          padding-right: 0.75rem;
+          font-family: var(--default-font);
+          font-size: 0.8rem;
+          font-weight: 500;
+
+          & [data-icon] {
+            font-size: 1.1rem;
+          }
+        }
+      }
+
+      & .main {
+        margin-left: auto;
+      }
+    }
+
+    & .data {
+      display: flex;
+      gap: 0 2rem;
+      padding: 1.5rem;
+
+      & .cover {
+        --size: 256px;
+
+        width: var(--size);
+        height: var(--size);
+        border-radius: 6px;
+        box-shadow:
+          0 4px 10px #0008,
+          0 0 20px #000a;
+      }
+
+      & .avatar {
+        --size: 32px;
+
+        width: var(--size);
+        height: var(--size);
+        background-image: url("/manzdev.png");
+        background-size: cover;
+        border-radius: 50%;
+      }
+
+      & .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+        font-family: var(--default-font);
+
+        & .row {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        & h1 {
+          margin: 0;
+          font-size: 5rem;
+          font-weight: 800;
+          letter-spacing: -4px;
+        }
+
+        & .total-duration {
+          color: var(--dark-textcolor);
+        }
+      }
+    }
+  }
+
   .playlist {
     --translucid-color: color-mix(in srgb, var(--medium-bgcolor), transparent 65%);
+    --playlist-format: 40px 1fr 0.7fr 0.4fr 0.1fr;
 
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
     background: linear-gradient(
       to bottom,
       var(--translucid-color) 0 25%,
       var(--medium-bgcolor) 80% 100%
     );
+
+    & header {
+      display: grid;
+      grid-template-columns: var(--playlist-format);
+      font-family: var(--default-font);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--dark-textcolor);
+
+      & > div {
+        padding: 0 0.5rem;
+      }
+
+      & + hr {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid var(--dark-textcolor);
+        opacity: 0.25;
+      }
+    }
   }
 </style>
 
 <div class="container">
 
   <header>
-
+    <div class="top">
+      <nav>
+        <button><Icon name="chevron-left" /></button>
+        <button disabled><Icon name="chevron-right" /></button>
+      </nav>
+      <div class="main">
+        <button class="large"><Icon name="download" /> <span>Instalar app</span></button>
+        <button><Icon name="bell" /></button>
+        <button class="avatar"></button>
+      </div>
+    </div>
+    <div class="data">
+      <img class="cover" src="/playlist/musicdev.webp" alt="ManzDev">
+      <div class="info">
+        <strong>Lista</strong>
+        <h1>MusicDev</h1>
+        <div class="row">
+          <div class="avatar"></div>
+          <span class="info-subtitle">ManzDev · 15 canciones,</span>
+          <span class="total-duration">1h 20 min aproximadamente</span>
+        </div>
+      </div>
+    </div>
   </header>
-  <div class="playlist"></div>
+
+  <div class="playlist">
+
+    <header>
+      <div class="cell">#</div>
+      <div class="cell">Título</div>
+      <div class="cell">Álbum</div>
+      <div class="cell">Fecha en la que se añadió</div>
+      <div class="cell"><Icon name="clock" /></div>
+    </header>
+    <hr>
+
+    {songs.map((song, index) => <SongItem index={index} {...song} />)}
+
+  </div>
 
 </div>
