@@ -1,0 +1,80 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<style>
+  .song-player-container {
+    min-width: 700px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 42px;
+
+    & .buttons {
+      display: inline-grid;
+      align-items: center;
+      grid-template-columns: repeat(2, 50px) 64px repeat(2, 50px);
+      grid-template-rows: 1fr;
+      height: 50%;
+      margin: auto;
+
+      & .button {
+        cursor: pointer;
+      }
+
+      & .circle {
+        --size: 40px;
+
+        width: var(--size);
+        height: var(--size);
+        background: #fff;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #000;
+      }
+    }
+
+    & .time-container {
+      --time-size: 42px;
+
+      display: grid;
+      grid-template-columns: var(--time-size) 1fr var(--time-size);
+      align-items: center;
+      gap: 0 1rem;
+      font-family: var(--default-font);
+      font-size: 0.9rem;
+
+      & .bar-container {
+        --progress: 100%;
+
+        background: #666;
+        height: 5px;
+        border-radius: 2px;
+        overflow: hidden;
+
+        & .bar {
+          background: #fff;
+          width: var(--progress);
+          height: 100%;
+        }
+      }
+    }
+  }
+</style>
+
+<div class="song-player-container">
+  <div class="buttons">
+    <div class="button shuffle"><Icon name="shuffle" /></div>
+    <div class="button prev"><Icon name="backward" /></div>
+    <div class="button play circle"><Icon name="play" /></div>
+    <div class="button next"><Icon name="forward" /></div>
+    <div class="button repeat"><Icon name="repeat" /></div>
+  </div>
+  <div class="time-container">
+    <time>00:00</time>
+    <div class="bar-container">
+      <div class="bar"></div>
+    </div>
+    <time>00:00</time>
+  </div>
+</div>

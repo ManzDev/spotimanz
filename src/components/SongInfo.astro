@@ -1,0 +1,57 @@
+---
+const title = "No quiero cambiar";
+const artist = "ManzDev";
+---
+
+<style>
+  .song-info-container {
+    min-width: 350px;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0 0.5rem;
+
+    & .avatar-song {
+      --size: 96px;
+
+      grid-row-start: 1;
+      grid-row-end: 3;
+      width: var(--size);
+      height: var(--size);
+      display: grid;
+      place-items: center;
+
+      & img {
+        width: 85%;
+        height: 85%;
+        border-radius: 10px;
+      }
+    }
+
+    & p {
+      font-family: var(--default-font);
+      display: grid;
+      margin: 0;
+
+      &.title {
+        color: #fff;
+        align-items: end;
+      }
+
+      &.artist {
+        color: #777;
+        align-items: start;
+      }
+    }
+  }
+</style>
+
+<div class="song-info-container">
+  <div class="avatar-song">
+    <img src="http://localhost:4321/playlist/musicdev/no-quiero-cambiar.webp" alt="">
+  </div>
+  <p class="title">{title}</p>
+  <p class="artist">{artist}</p>
+</div>
