@@ -2,6 +2,7 @@
 import { cwd } from "node:process";
 import { resolve } from "node:path";
 import { Icon } from "astro-icon/components";
+import BalloonButton from "@/components/BalloonButton.astro";
 import songs from "@/data/musicdev.json";
 import SongItem from "@/components/SongItem.astro";
 import ColorThief from "colorthief";
@@ -40,42 +41,6 @@ const dominantColor = await getDominantColor(coverPlaylist);
       & :is(nav, .main) {
         display: flex;
         gap: 0.5rem;
-
-        & button {
-          --size: 30px;
-
-          width: var(--size);
-          height: var(--size);
-          border-radius: 50%;
-          border: 0;
-          background: #000a;
-
-          &[disabled] { background: #0004; }
-        }
-
-        & button.avatar {
-          background-image: url("/manzdev.png");
-          background-size: cover;
-          background-clip: padding-box;
-          border: 3px solid #000a;
-        }
-
-        & button.large {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          width: max-content;
-          border-radius: 50px;
-          padding-left: 0.5rem;
-          padding-right: 0.75rem;
-          font-family: var(--default-font);
-          font-size: 0.8rem;
-          font-weight: 500;
-
-          & [data-icon] {
-            font-size: 1.1rem;
-          }
-        }
       }
 
       & .main {
@@ -186,13 +151,15 @@ const dominantColor = await getDominantColor(coverPlaylist);
   <header>
     <div class="top">
       <nav>
-        <button><Icon name="chevron-left" /></button>
-        <button disabled><Icon name="chevron-right" /></button>
+        <BalloonButton><Icon name="chevron-left" /></BalloonButton>
+        <BalloonButton disabled><Icon name="chevron-right" /></BalloonButton>
       </nav>
       <div class="main">
-        <button class="large"><Icon name="download" /> <span>Instalar app</span></button>
-        <button><Icon name="bell" /></button>
-        <button class="avatar"></button>
+        <BalloonButton class="large" href="https://music.manz.dev/">
+          <Icon name="download" /> Visitar music.manz.dev
+        </BalloonButton>
+        <BalloonButton><Icon name="bell" /></BalloonButton>
+        <BalloonButton class="avatar" href="https://manz.dev/"></BalloonButton>
       </div>
     </div>
     <div class="data">

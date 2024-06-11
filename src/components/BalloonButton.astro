@@ -1,0 +1,56 @@
+---
+const { href, disabled } = Astro.props;
+---
+
+<style>
+  a {
+    --size: 30px;
+
+    width: var(--size);
+    height: var(--size);
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 0;
+    background: #000a;
+    text-decoration: none;
+    color: #fff;
+
+    &[href] {
+      cursor: pointer;
+    }
+
+    &[disabled] {
+      background: #0004;
+    }
+
+    &.large {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      width: max-content;
+      border-radius: 50px;
+      padding-left: 0.5rem;
+      padding-right: 0.75rem;
+      font-family: var(--default-font);
+      font-size: 0.8rem;
+      font-weight: 500;
+
+      & [data-icon] {
+        font-size: 1.1rem;
+      }
+    }
+
+    &.avatar {
+      background-image: url("/manzdev.png");
+      background-size: cover;
+      background-clip: padding-box;
+      border: 3px solid #000a;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<a class={"balloon-button " + Astro.props.class} {disabled} href={href}>
+  <slot></slot>
+</div>
