@@ -7,18 +7,22 @@ import { Icon } from "astro-icon/components";
     min-width: 700px;
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 42px;
+    grid-template-rows: 42px 24px;
+    align-content: center;
 
     & .buttons {
       display: inline-grid;
+      justify-items: center;
       align-items: center;
       grid-template-columns: repeat(2, 50px) 64px repeat(2, 50px);
       grid-template-rows: 1fr;
-      height: 50%;
       margin: auto;
 
-      & .button {
+      & button {
         cursor: pointer;
+        background: none;
+        border: 0;
+        font-size: 1rem;
       }
 
       & .circle {
@@ -64,11 +68,11 @@ import { Icon } from "astro-icon/components";
 
 <div class="song-player-container">
   <div class="buttons">
-    <div class="button shuffle"><Icon name="shuffle" /></div>
-    <div class="button prev"><Icon name="backward" /></div>
-    <div class="button play circle"><Icon name="play" /></div>
-    <div class="button next"><Icon name="forward" /></div>
-    <div class="button repeat"><Icon name="repeat" /></div>
+    <button class="shuffle"><Icon name="shuffle" /></button>
+    <button class="prev"><Icon name="backward" /></button>
+    <button class="play circle"><Icon name="play" /></button>
+    <button class="next"><Icon name="forward" /></button>
+    <button class="repeat"><Icon name="repeat" /></button>
   </div>
   <div class="time-container">
     <time>00:00</time>
