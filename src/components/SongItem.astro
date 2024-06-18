@@ -1,8 +1,8 @@
 ---
-const { index, title, artist, src, album, date, duration } = Astro.props;
+const { index, title, artist, slug, album, date, duration } = Astro.props;
 
 const FOLDER = "musicdev";
-const image = `/playlist/${FOLDER}/${src}.webp`;
+const image = `/playlist/${FOLDER}/${slug}.webp`;
 ---
 
 <style>
@@ -53,7 +53,7 @@ const image = `/playlist/${FOLDER}/${src}.webp`;
   }
 </style>
 
-<div class="row-item">
+<div class="row-item" data-id={index}>
   <div class="num">{index + 1}</div>
   <div class="title-container">
     <img src={image} alt={title}>

@@ -48,9 +48,25 @@ const artist = "ManzDev";
   }
 </style>
 
+<script type="module">
+  document.addEventListener("player:update-info", ({ detail }) => {
+    const { title, artist, slug, album } = detail;
+
+    const container = document.querySelector(".song-info-container");
+    const titleTag = container.querySelector(".title");
+    const artistTag = container.querySelector(".artist");
+    const imageTag = container.querySelector("img");
+
+    titleTag.textContent = title;
+    artistTag.textContent = artist;
+    imageTag.src = `/playlist/${album.toLowerCase()}/${slug}.webp`;
+    imageTag.alt = title;
+  });
+</script>
+
 <div class="song-info-container">
   <div class="avatar-song">
-    <img src="http://localhost:4321/playlist/musicdev/no-quiero-cambiar.webp" alt="">
+    <img src="/playlist/musicdev/no-quiero-cambiar.webp" alt="">
   </div>
   <p class="title">{title}</p>
   <p class="artist">{artist}</p>

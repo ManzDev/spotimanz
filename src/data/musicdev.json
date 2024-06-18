@@ -2,7 +2,7 @@
   {
     "title": "No quiero cambiar",
     "artist": "ManzDev",
-    "src": "no-quiero-cambiar",
+    "slug": "no-quiero-cambiar",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "01:50"
@@ -10,7 +10,7 @@
   {
     "title": "Yo ya soy inmortal",
     "artist": "ManzDev",
-    "src": "yo-ya-soy-inmortal",
+    "slug": "yo-ya-soy-inmortal",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "03:23"
@@ -18,7 +18,7 @@
   {
     "title": "Resolví el problema",
     "artist": "ManzDev",
-    "src": "resolvi-el-problema",
+    "slug": "resolvi-el-problema",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "01:58"
@@ -26,7 +26,7 @@
   {
     "title": "Soy programador Freelance",
     "artist": "ManzDev",
-    "src": "soy-programador-freelance",
+    "slug": "soy-programador-freelance",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "04:03"
@@ -34,7 +34,7 @@
   {
     "title": "El último humano",
     "artist": "ManzDev",
-    "src": "el-ultimo-humano",
+    "slug": "el-ultimo-humano",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:55"
@@ -42,7 +42,7 @@
   {
     "title": "En mi local funcionaba",
     "artist": "ManzDev",
-    "src": "en-mi-local-funcionaba",
+    "slug": "en-mi-local-funcionaba",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:54"
@@ -50,7 +50,7 @@
   {
     "title": "Soy backend",
     "artist": "ManzDev",
-    "src": "soy-backend",
+    "slug": "soy-backend",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:14"
@@ -58,7 +58,7 @@
   {
     "title": "Tengo un gran problema",
     "artist": "ManzDev",
-    "src": "tengo-un-gran-problema",
+    "slug": "tengo-un-gran-problema",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:27"
@@ -66,7 +66,7 @@
   {
     "title": "El Guardián del Hipertexto",
     "artist": "ManzDev",
-    "src": "el-guardian-del-hipertexto",
+    "slug": "el-guardian-del-hipertexto",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "04:16"
@@ -74,7 +74,7 @@
   {
     "title": "El navegador olvidado",
     "artist": "ManzDev",
-    "src": "el-navegador-olvidado",
+    "slug": "el-navegador-olvidado",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "01:44"
@@ -82,7 +82,7 @@
   {
     "title": "Amor imposible",
     "artist": "ManzDev",
-    "src": "amor-imposible",
+    "slug": "amor-imposible",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:41"
@@ -90,7 +90,7 @@
   {
     "title": "He desplegado a producción",
     "artist": "ManzDev",
-    "src": "he-desplegado-a-produccion",
+    "slug": "he-desplegado-a-produccion",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "03:09"
@@ -98,7 +98,7 @@
   {
     "title": "Descargué Internet entero",
     "artist": "ManzDev",
-    "src": "descargue-internet-entero",
+    "slug": "descargue-internet-entero",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:12"
@@ -106,7 +106,7 @@
   {
     "title": "Ha funcionado",
     "artist": "ManzDev",
-    "src": "ha-funcionado",
+    "slug": "ha-funcionado",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "02:41"
@@ -114,7 +114,7 @@
   {
     "title": "No quiero cambiar (Extended Version)",
     "artist": "ManzDev",
-    "src": "no-quiero-cambiar-extended",
+    "slug": "no-quiero-cambiar-extended",
     "album": "MusicDev",
     "date": "2024-05-01T00:00:00",
     "duration": "04:22"

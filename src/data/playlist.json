@@ -1,6 +1,6 @@
 [
-  { "src": "musicdev", "title": "music.manz.dev", "subtitle": "Lista · MusicDev", "pinned": true },
-  { "src": "resolvi-el-problema", "title": "Resolví el problema", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "src": "no-quiero-cambiar", "title": "No quiero cambiar", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "src": "el-ultimo-humano", "title": "El último humano", "subtitle": "Lista · MAXI/Single", "pinned": false }
+  { "slug": "musicdev", "title": "music.manz.dev", "subtitle": "Lista · MusicDev", "pinned": true },
+  { "slug": "resolvi-el-problema", "title": "Resolví el problema", "subtitle": "Lista · MAXI/Single", "pinned": false },
+  { "slug": "no-quiero-cambiar", "title": "No quiero cambiar", "subtitle": "Lista · MAXI/Single", "pinned": false },
+  { "slug": "el-ultimo-humano", "title": "El último humano", "subtitle": "Lista · MAXI/Single", "pinned": false }
 ]

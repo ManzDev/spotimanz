@@ -47,7 +47,23 @@ import SongItem from "@/components/SongItem.astro";
   }
 </style>
 
-<div class="playlist">
+<script type="module">
+  const playList = document.querySelector(".song.playlist");
+  playList.addEventListener("click", (ev) => {
+    const isDoubleClick = ev.detail === 2;
+
+    if (isDoubleClick) {
+      const rowItem = ev.composedPath().find(tag => tag.classList?.contains("row-item"));
+      if (rowItem) {
+        const id = Number(rowItem.dataset.id);
+        const event = new CustomEvent("player:play", { detail: id, bubbles: true })
+        document.dispatchEvent(event);
+      }
+    }
+  })
+</script>
+
+<div class="song playlist">
 
   <header>
     <div class="cell">#</div>

@@ -1,20 +1,7 @@
 # Spotimanz (Spotify Clone UI)
 
-- Funcionalidad de reproductor
-
-```js
-class MusicPlayer {
-  songList -------------> [{ id: 1, title: "", artist: "", url: "" }, ... ]
-  shuffleEnabled (bool)
-  repeatEnabled (bool)
-  currentSong (number)
-  currentVolume (number)
-
-  play()
-  pause()
-  next()
-  prev()
-  toggleShuffle()
-  toggleRepeat()
-}
-```
+- Animar el botón con el que estás interactuando para dar feedback al usuario
+- Personalizar la barra de scroll
+- Dejar seleccionado el elemento que has elegido de la lista al dar click
+- Barra de progreso cuando reproduces la canción
+- Memoizar las funciones de actualización del timeUpdate

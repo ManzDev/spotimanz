@@ -1,5 +1,9 @@
 ---
+import songs from "@/data/musicdev.json";
 import { Icon } from "astro-icon/components";
+
+const PLAYLIST_NAME = "musicdev";
+
 ---
 
 <style>
@@ -66,11 +70,125 @@ import { Icon } from "astro-icon/components";
   }
 </style>
 
+<script type="module" define:vars={{ PLAYLIST_NAME, songs }}>
+
+  function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+
+      const formattedMinutes = String(minutes).padStart(2, '0');
+      const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+      return `${formattedMinutes}:${formattedSeconds}`;
+  }
+
+  class MusicPlayer {
+    songList = songs;
+    shuffleEnabled = false;
+    repeatEnabled = false;
+    currentSongIndex = 0;
+    currentSong = new Audio();
+    currentVolume = 1;
+
+    constructor() {
+      const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
+      this.durationTag = durationTag;
+      this.prepare(0);
+
+      this.currentSong.addEventListener("timeupdate", (ev) => {
+        const time = formatTime(~~ev.target.currentTime);
+        currentTimeTag.textContent = time;
+      });
+    }
+
+    prepare(index) {
+      this.currentSongIndex = index;
+      this.currentSong.src = "/playlist/" + PLAYLIST_NAME + "/" + this.songList[this.currentSongIndex].slug + ".mp3";
+      this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
+    }
+
+    play() {
+      if (this.currentSong.paused) {
+        this.currentSong.play();
+        this.sendInfo();
+        console.log({ actualPlay: this.currentSongIndex });
+      }
+      else
+        this.currentSong.pause();
+
+      this.togglePlayPause();
+      this.animatePlay();
+    }
+
+    togglePlayPause() {
+      [...document.querySelectorAll(".buttons .play > div")]
+        .forEach(div => div.toggleAttribute("hidden"));
+    }
+
+    animatePlay() {
+      // const button = document.querySelector(".buttons .play");
+      // const animation = button.animate([{ "scale": "1" }, { "scale": "1.2" }, { "scale": "1" }], 200);
+    }
+
+    next() {
+      const index = (this.currentSongIndex + 1) % this.songList.length;
+      console.log({ actual: this.currentSongIndex, nuevo: index });
+      this.togglePlayPause();
+      this.prepare(index);
+      this.play();
+    }
+
+    prev() {
+      const index = ((this.currentSongIndex - 1) <= 0) ? this.songList.length - 1 : this.currentSongIndex - 1;
+      this.togglePlayPause();
+      this.prepare(index);
+      this.play();
+    }
+
+    sendInfo() {
+      const data = { detail: this.songList[this.currentSongIndex], bubbles: true };
+      const event = new CustomEvent("player:update-info", data);
+      document.dispatchEvent(event);
+    }
+
+    toggleShuffle() {
+
+    }
+
+    toggleRepeat() {
+
+    }
+  }
+
+  const musicPlayer = new MusicPlayer();
+
+  const buttons = {
+    play: document.querySelector(".buttons .play"),
+    prev: document.querySelector(".buttons .prev"),
+    next: document.querySelector(".buttons .next"),
+    shuffle: document.querySelector(".buttons .shuffle")
+  }
+
+  buttons.play.addEventListener("click", () => musicPlayer.play());
+  buttons.prev.addEventListener("click", () => musicPlayer.prev());
+  buttons.next.addEventListener("click", () => musicPlayer.next());
+  buttons.shuffle.addEventListener("click", () => {});
+
+  document.addEventListener("player:play", ({ detail }) => {
+    musicPlayer.prepare(detail);
+    musicPlayer.play();
+  });
+
+</script>
+
 <div class="song-player-container">
   <div class="buttons">
     <button class="shuffle"><Icon name="shuffle" /></button>
     <button class="prev"><Icon name="backward" /></button>
-    <button class="play circle"><Icon name="play" /></button>
+    <button class="play circle">
+      <div class="play"><Icon name="play" /></div>
+      <div class="pause" hidden><Icon name="pause" /></div>
+    </button>
     <button class="next"><Icon name="forward" /></button>
     <button class="repeat"><Icon name="repeat" /></button>
   </div>
