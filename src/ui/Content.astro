@@ -15,9 +15,15 @@ const dominantColor = await getDominantColor(coverPlaylist);
     display: grid;
     grid-template-rows: 400px 1fr;
     background: linear-gradient(to bottom, var(--theme-color), var(--dark-theme-color) 60%);
-    height: 100%;
     border-radius: var(--border-radius);
+    max-height: 82vh;
+
+    overflow-y: scroll;
   }
+
+  .container::-webkit-scrollbar { width: 12px; }
+  .container::-webkit-scrollbar-thumb { background: #fff3; border-radius: 0 15px 15px 0; }
+  .container::-webkit-scrollbar-track { background: transparent; }
 
   header {
     display: flex;
