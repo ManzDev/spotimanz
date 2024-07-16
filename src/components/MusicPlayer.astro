@@ -1,9 +1,10 @@
 ---
-// import songs from "@/data/musicdev.json";
-const PLAYLIST_NAME = "musicdev";
+
 ---
 
-<script type="module" define:vars={{ PLAYLIST_NAME }}>
+<script type="module">
+
+  const PLAYLIST = "metaldev";
 
   function formatTime(seconds) {
       const minutes = Math.floor(seconds / 60);
@@ -110,7 +111,7 @@ const PLAYLIST_NAME = "musicdev";
     }
   }
 
-  const songs = await fetch("/playlist/metaldev.json").then(response => response.json());
+  const songs = await fetch(`/playlist/${PLAYLIST}.json`).then(response => response.json());
   const musicPlayer = new MusicPlayer(songs);
 
   const buttons = {

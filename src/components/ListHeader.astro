@@ -1,0 +1,107 @@
+---
+import { Icon } from "astro-icon/components";
+import BalloonButton from "@/components/BalloonButton.astro";
+
+const coverPlaylist = "/playlist/chilldev.webp";
+---
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+
+    & .top {
+      display: flex;
+      padding: 1.25rem;
+
+      & :is(nav, .main) {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      & .main {
+        margin-left: auto;
+      }
+    }
+
+    & .data {
+      display: flex;
+      gap: 0 2rem;
+      padding: 1.5rem;
+
+      & .cover {
+        --size: 256px;
+
+        width: var(--size);
+        height: var(--size);
+        border-radius: 6px;
+        box-shadow:
+          0 4px 10px #0008,
+          0 0 20px #000a;
+      }
+
+      & .avatar {
+        --size: 32px;
+
+        width: var(--size);
+        height: var(--size);
+        background-image: url("/manzdev.png");
+        background-size: cover;
+        border-radius: 50%;
+      }
+
+      & .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+        font-family: var(--default-font);
+
+        & .row {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        & h1 {
+          margin: 0;
+          font-size: 5rem;
+          font-weight: 800;
+          letter-spacing: -4px;
+        }
+
+        & .total-duration {
+          color: var(--dark-textcolor);
+        }
+      }
+    }
+  }
+</style>
+
+<header>
+  <div class="top">
+    <nav>
+      <BalloonButton><Icon name="chevron-left" /></BalloonButton>
+      <BalloonButton disabled><Icon name="chevron-right" /></BalloonButton>
+    </nav>
+    <div class="main">
+      <BalloonButton class="large" href="https://music.manz.dev/">
+        <Icon name="download" /> Visitar music.manz.dev
+      </BalloonButton>
+      <BalloonButton><Icon name="bell" /></BalloonButton>
+      <BalloonButton class="avatar" href="https://manz.dev/"></BalloonButton>
+    </div>
+  </div>
+  <div class="data">
+    <img class="cover" src={coverPlaylist} alt="ManzDev">
+    <div class="info">
+      <strong>Lista</strong>
+      <h1>MusicDev</h1>
+      <div class="row">
+        <div class="avatar"></div>
+        <span class="info-subtitle">ManzDev · 15 canciones,</span>
+        <span class="total-duration">1h 20 min aproximadamente</span>
+      </div>
+    </div>
+  </div>
+</header>
