@@ -1,6 +1,6 @@
 [
   { "slug": "musicdev", "title": "music.manz.dev", "subtitle": "Lista · MusicDev", "pinned": true },
-  { "slug": "resolvi-el-problema", "title": "Resolví el problema", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "slug": "no-quiero-cambiar", "title": "No quiero cambiar", "subtitle": "Lista · MAXI/Single", "pinned": false },
-  { "slug": "el-ultimo-humano", "title": "El último humano", "subtitle": "Lista · MAXI/Single", "pinned": false }
+  { "slug": "metaldev", "title": "Edición Metal/Rock", "subtitle": "Lista · MetalDev", "pinned": false },
+  { "slug": "chilldev", "title": "Edición Chill/Synth", "subtitle": "Lista · ChillDev", "pinned": false },
+  { "slug": "alternativedev", "title": "Edición Alternative", "subtitle": "Lista · AlternativeDev", "pinned": false }
 ]

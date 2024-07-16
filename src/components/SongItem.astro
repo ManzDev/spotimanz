@@ -1,69 +1,102 @@
 ---
-const { index, title, artist, slug, album, date, duration } = Astro.props;
 
-const FOLDER = "musicdev";
-const image = `/playlist/${FOLDER}/${slug}.webp`;
 ---
 
-<style>
-  .row-item {
-    display: grid;
-    grid-template-columns: var(--playlist-format);
-    font-family: var(--default-font);
-    font-size: 1rem;
-    align-items: center;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-    user-select: none;
+<script type="module">
+  class SongItem extends HTMLElement {
 
-    & > div:nth-child(4) {
-      text-align: center;
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
     }
 
-    &:hover {
-      background: #ffffff15;
-      cursor: pointer;
-    }
-  }
+    static get styles() {
+      return /* css */`
+        .row-item {
+          display: grid;
+          grid-template-columns: var(--playlist-format);
+          font-family: var(--default-font);
+          font-size: 1rem;
+          align-items: center;
+          padding: 0.25rem 0.5rem;
+          border-radius: 5px;
+          user-select: none;
 
-  .title-container {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+          & > div:nth-child(4) {
+            text-align: center;
+          }
 
-    & img {
-      --size: 64px;
-
-      width: var(--size);
-      height: var(--size);
-      border-radius: 5px;
-    }
-
-    & .group {
-      display: flex;
-      flex-direction: column;
-
-      & .artist {
-        color: var(--dark-textcolor);
-
-        .row-item:hover & {
-          color: #fff;
+          &:hover {
+            background: #ffffff15;
+            cursor: pointer;
+          }
         }
-      }
-    }
-  }
-</style>
 
-<div class="row-item" data-id={index}>
-  <div class="num">{index + 1}</div>
-  <div class="title-container">
-    <img src={image} alt={title}>
-    <div class="group">
-      <div>{title}</div>
-      <div class="artist">{artist}</div>
-    </div>
-  </div>
-  <div>{album}</div>
-  <div>{date.substring(0, 10)}</div>
-  <div>{duration}</div>
-</div>
+        .title-container {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+
+          & img {
+            --size: 64px;
+
+            width: var(--size);
+            height: var(--size);
+            border-radius: 5px;
+          }
+
+          & .group {
+            display: flex;
+            flex-direction: column;
+
+            & .artist {
+              color: var(--dark-textcolor);
+
+              .row-item:hover & {
+                color: #fff;
+              }
+            }
+          }
+        }
+      `;
+    }
+
+    connectedCallback() {
+      this.slug = this.getAttribute("slug");
+      this.title = this.getAttribute("title");
+      this.artist = this.getAttribute("artist");
+      this.album = this.getAttribute("album");
+      this.date = this.getAttribute("date");
+      this.duration = this.getAttribute("duration");
+      this.index = Number(this.getAttribute("index"));
+      this.image = `/playlist/${this.album.toLowerCase()}/${this.slug}.webp`;
+      this.render();
+    }
+
+    getFile() {
+      return this.getAttribute("image").replace(".webp", ".mp3");
+    }
+
+    render() {
+      this.shadowRoot.innerHTML = /* html */`
+        <style>${SongItem.styles}</style>
+        <div class="row-item" data-id=${this.index}>
+          <div class="num">${this.index + 1}</div>
+          <div class="title-container">
+            <img src=${this.image} alt=${this.title}>
+            <div class="group">
+              <div>${this.title}</div>
+              <div class="artist">${this.artist}</div>
+            </div>
+          </div>
+          <div>${this.album}</div>
+          <div>${this.date.substring(0, 10)}</div>
+          <div>${this.duration}</div>
+        </div>
+      `;
+    }
+
+  }
+
+  customElements.define("song-item", SongItem);
+</script>

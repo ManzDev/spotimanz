@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Resolví el problema (Metal version)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-metal-version",
+    "album": "MetalDev",
+    "date": "2024-05-30T00:00:00",
+    "duration": "03:35"
+  },
+  {
+    "title": "El Guardián del Hipertexto (Epic version)",
+    "artist": "ManzDev",
+    "slug": "el-guardian-del-hipertexto-epic-version",
+    "album": "MetalDev",
+    "date": "2024-06-23T00:00:00",
+    "duration": "03:38"
+  },
+  {
+    "title": "No quiero cambiar (Rock version)",
+    "artist": "ManzDev",
+    "slug": "no-quiero-cambiar-rock-version",
+    "album": "MetalDev",
+    "date": "2024-06-19T00:00:00",
+    "duration": "02:36"
+  },
+  {
+    "title": "En mi local funcionaba (Melodic Rock version)",
+    "artist": "ManzDev",
+    "slug": "en-mi-local-funcionaba-melodic-rock-version",
+    "album": "MetalDev",
+    "date": "2024-06-06T00:00:00",
+    "duration": "03:03"
+  },
+  {
+    "title": "Descargué Internet entero (Synthrock version)",
+    "artist": "ManzDev",
+    "slug": "descargue-internet-entero-synthrock-version",
+    "album": "MetalDev",
+    "date": "2024-06-15T00:00:00",
+    "duration": "03:34"
+  },
+  {
+    "title": "Amor imposible (Metal version)",
+    "artist": "ManzDev",
+    "slug": "amor-imposible-metal-version",
+    "album": "MetalDev",
+    "date": "2024-07-03T00:00:00",
+    "duration": "02:19"
+  },
+  {
+    "title": "El Guardián del Hipertexto (Alternative Metal version)",
+    "artist": "ManzDev",
+    "slug": "el-guardian-del-hipertexto-alternative-metal-version",
+    "album": "MetalDev",
+    "date": "2024-06-24T00:00:00",
+    "duration": "03:10"
+  },
+  {
+    "title": "Soy Backend (Metal version)",
+    "artist": "ManzDev",
+    "slug": "soy-backend-metal-version",
+    "album": "MetalDev",
+    "date": "2024-07-03T00:00:00",
+    "duration": "02:33"
+  },
+  {
+    "title": "Resolví el problema (Grunge version)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-grunge-version",
+    "album": "MetalDev",
+    "date": "2024-06-10T00:00:00",
+    "duration": "02:38"
+  }
+]

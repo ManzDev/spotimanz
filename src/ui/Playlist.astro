@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import songs from "@/data/musicdev.json";
+// import songs from "@/data/metaldev.json";
 import SongItem from "@/components/SongItem.astro";
 ---
 
@@ -62,6 +62,8 @@ import SongItem from "@/components/SongItem.astro";
 
 <div class="song playlist">
 
+  <SongItem />
+
   <header>
     <div class="cell">#</div>
     <div class="cell">Título</div>
@@ -71,6 +73,6 @@ import SongItem from "@/components/SongItem.astro";
   </header>
   <hr>
 
-  {songs.map((song, index) => <SongItem index={index} {...song} />)}
+  { /* songs.map((song, index) => <song-item index={index} {...song}></song-item>) */ }
 
 </div>
