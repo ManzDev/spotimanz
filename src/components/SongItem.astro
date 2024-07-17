@@ -73,8 +73,15 @@
       this.render();
     }
 
-    getFile() {
-      return this.getAttribute("image").replace(".webp", ".mp3");
+    getData() {
+      return {
+        album: this.album,
+        artist: this.artist,
+        date: this.date,
+        duration: this.duration,
+        slug: this.slug,
+        title: this.title
+      };
     }
 
     render() {

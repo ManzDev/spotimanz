@@ -1,12 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import Playlist from "@/ui/Playlist.astro";
-import BalloonButton from "@/components/BalloonButton.astro";
-import { getDominantColor } from "@/modules/getDominantColor.server.js";
+import Playlist from "./Playlist.astro";
 import ListHeader from "@/components/ListHeader.astro";
-
-const coverPlaylist = "/playlist/musicdev.webp";
-const dominantColor = await getDominantColor(coverPlaylist);
 ---
 
 <style>
@@ -40,11 +35,9 @@ const dominantColor = await getDominantColor(coverPlaylist);
   .container::-webkit-scrollbar-track { background: transparent; }
 </style>
 
-<style define:vars={{ dominantColor }}>
-  .container {
-    --theme-color: var(--dominantColor);
-  }
-</style>
+<!--script type="module" define:vars={{ dominantColor }}>
+  document.body.style.setProperty("--dominantColor", dominantColor);
+</script-->
 
 <div class="container">
   <ListHeader />

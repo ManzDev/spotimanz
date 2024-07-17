@@ -8,10 +8,14 @@ import RowItem from "@/components/RowItem.astro";
     flex-direction: column;
     padding: 1rem;
     gap: 0.25rem 0;
+
+    & a {
+      text-decoration: none;
+    }
   }
 </style>
 
 <div class="container">
-  <RowItem icon="home" label="Inicio" />
-  <RowItem icon="search" label="Buscar" />
+  <a href="https://manz.dev/"><RowItem icon="home" label="Ir a Manz.dev" /></a>
+  <!--RowItem icon="search" label="Buscar" /-->
 </div>

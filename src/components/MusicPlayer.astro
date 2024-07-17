@@ -1,135 +1,63 @@
 ---
-
 ---
-
 <script type="module">
+  import { emitEvent } from "/modules/emitter.js";
+  import { MusicPlayer } from "/modules/MusicPlayer.js";
+  const PLAYLIST = "musicdev";
 
-  const PLAYLIST = "metaldev";
-
-  function formatTime(seconds) {
-      const minutes = Math.floor(seconds / 60);
-      const remainingSeconds = seconds % 60;
-
-      const formattedMinutes = String(minutes).padStart(2, '0');
-      const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-
-      return `${formattedMinutes}:${formattedSeconds}`;
-  }
-
-  class MusicPlayer {
-    songList = [];
-    shuffleEnabled = false;
-    repeatEnabled = false;
-    currentSongIndex = 0;
-    currentSong = new Audio();
-    currentVolume = 1;
-
-    constructor(songs) {
-      const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
-      this.durationTag = durationTag;
-      this.songList = songs;
-      this.prepare(0);
-
-      this.currentSong.addEventListener("timeupdate", (ev) => {
-        const time = formatTime(~~ev.target.currentTime);
-        currentTimeTag.textContent = time;
-      });
-
-      const songPlaylist = document.querySelector(".song.playlist");
-      songs.forEach((song, index) => {
-        const attrs = Object.entries(song).map(([attr, value]) => `${attr}="${value}"`).join(" ");
-        console.log(index, song);
-        const element = `<song-item index="${index}" ${attrs}></song-item>`;
-        songPlaylist.insertAdjacentHTML("beforeend", element);
-      });
-
-    }
-
-    prepare(index) {
-      this.currentSongIndex = index;
-      const song = this.songList[this.currentSongIndex];
-      this.currentSong.src = "/playlist/" + song.album.toLowerCase() + "/" + song.slug + ".mp3";
-      this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
-    }
-
-    play() {
-      if (this.currentSong.paused) {
-        this.currentSong.play();
-        this.sendInfo();
-        console.log({ actualPlay: this.currentSongIndex });
-      }
-      else
-        this.currentSong.pause();
-
-      this.togglePlayPause();
-      this.animatePlay();
-    }
-
-    togglePlayPause(forcePause = false) {
-      if (!forcePause) {
-        [...document.querySelectorAll(".buttons .play > div")]
-          .forEach(div => div.toggleAttribute("hidden"));
-      } else {
-        const [play, pause] = document.querySelectorAll(".buttons .play > div");
-        play.setAttribute("hidden", "");
-        pause.removeAttribute("hidden");
-      }
-    }
-
-    animatePlay() {
-      // const button = document.querySelector(".buttons .play");
-      // const animation = button.animate([{ "scale": "1" }, { "scale": "1.2" }, { "scale": "1" }], 200);
-    }
-
-    next() {
-      const index = (this.currentSongIndex + 1) % this.songList.length;
-      console.log({ actual: this.currentSongIndex, nuevo: index });
-      this.prepare(index);
-      this.play();
-      this.togglePlayPause(true);
-    }
-
-    prev() {
-      const index = ((this.currentSongIndex - 1) <= 0) ? this.songList.length - 1 : this.currentSongIndex - 1;
-      this.prepare(index);
-      this.play();
-      this.togglePlayPause(true);
-    }
-
-    sendInfo() {
-      const data = { detail: this.songList[this.currentSongIndex], bubbles: true };
-      const event = new CustomEvent("player:update-info", data);
-      document.dispatchEvent(event);
-    }
-
-    toggleShuffle() {
-
-    }
-
-    toggleRepeat() {
-
-    }
-  }
-
-  const songs = await fetch(`/playlist/${PLAYLIST}.json`).then(response => response.json());
+  let songs = await fetch(`/playlist/${PLAYLIST}.json`).then(response => response.json());
   const musicPlayer = new MusicPlayer(songs);
 
   const buttons = {
-    play: document.querySelector(".buttons .play"),
-    prev: document.querySelector(".buttons .prev"),
-    next: document.querySelector(".buttons .next"),
-    shuffle: document.querySelector(".buttons .shuffle")
+    play: document.querySelector(".song-player-container .play"),
+    prev: document.querySelector(".song-player-container .prev"),
+    next: document.querySelector(".song-player-container .next"),
+    shuffle: document.querySelector(".song-player-container .shuffle"),
+    repeat: document.querySelector(".song-player-container .repeat")
   }
+
+  document.querySelector(".buttons").addEventListener("click", ({ target}) => console.log(target));
 
   buttons.play.addEventListener("click", () => musicPlayer.play());
   buttons.prev.addEventListener("click", () => musicPlayer.prev());
   buttons.next.addEventListener("click", () => musicPlayer.next());
-  buttons.shuffle.addEventListener("click", () => {});
+  buttons.repeat.addEventListener("click", () => buttons.repeat.classList.toggle("disabled"));
+  buttons.shuffle.addEventListener("click", () => buttons.shuffle.classList.toggle("disabled"));
 
-  document.addEventListener("player:play", ({ detail }) => {
-    musicPlayer.prepare(detail);
-    musicPlayer.play();
-    musicPlayer.togglePlayPause(true);
+  /* Sidebar playlist */
+
+  const listHeader = document.querySelector("list-header");
+  const playlistItems = document.querySelectorAll(".playlist-item");
+  playlistItems.forEach(playlist => {
+    playlist.addEventListener("click", async () => {
+      const slug = playlist.dataset.id;
+      const title = playlist.querySelector(".title").textContent;
+      songs = await fetch(`/playlist/${slug}.json`).then(response => response.json());
+      musicPlayer.updateList(songs);
+      listHeader.setData(title);
+      document.body.style.setProperty("--theme-color", playlist.dataset.color);
+    });
   });
 
+  /* Songlist */
+
+  window.musicPlayer = musicPlayer;
+
+  const songPlaylist = document.querySelector(".song.playlist");
+  songPlaylist.addEventListener("click", (ev) => {
+    const isClick = ev.detail === 1;
+    const isDoubleClick = ev.detail === 2;
+
+    if (isClick) {
+      const newSongs = [...document.querySelectorAll("song-item")].map(song => song.getData());
+      musicPlayer.setSongs(newSongs);
+      const rowItem = ev.composedPath().find(tag => tag.classList?.contains("row-item"));
+      const id = Number(rowItem.dataset.id);
+      if (rowItem) {
+        musicPlayer.prepare(id);
+        musicPlayer.play();
+        musicPlayer.togglePlayPause(true);
+      }
+    }
+  });
 </script>

@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-// import songs from "@/data/metaldev.json";
 import SongItem from "@/components/SongItem.astro";
 ---
 
@@ -44,22 +43,6 @@ import SongItem from "@/components/SongItem.astro";
   }
 </style>
 
-<script type="module">
-  const playList = document.querySelector(".song.playlist");
-  playList.addEventListener("click", (ev) => {
-    const isDoubleClick = ev.detail === 2;
-
-    if (isDoubleClick) {
-      const rowItem = ev.composedPath().find(tag => tag.classList?.contains("row-item"));
-      if (rowItem) {
-        const id = Number(rowItem.dataset.id);
-        const event = new CustomEvent("player:play", { detail: id, bubbles: true })
-        document.dispatchEvent(event);
-      }
-    }
-  })
-</script>
-
 <div class="song playlist">
 
   <SongItem />
@@ -72,7 +55,5 @@ import SongItem from "@/components/SongItem.astro";
     <div class="cell"><Icon name="clock" /></div>
   </header>
   <hr>
-
-  { /* songs.map((song, index) => <song-item index={index} {...song}></song-item>) */ }
 
 </div>

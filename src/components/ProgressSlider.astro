@@ -1,0 +1,81 @@
+---
+---
+<script type="module">
+  import { emitEvent } from "/modules/emitter.js";
+
+  class ProgressSlider extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
+    }
+
+    static get styles() {
+      return /* css */`
+
+      :host {
+        --progress: 0%;
+      }
+
+      .bar-container {
+        background: #333;
+        height: 5px;
+        border-radius: 2px;
+        overflow: hidden;
+
+        & .bar {
+          background: #fff;
+          width: var(--progress);
+          height: 100%;
+        }
+
+        &:hover .bar {
+          background: var(--theme-color, #fff);
+        }
+      }
+      `;
+    }
+
+    connectedCallback() {
+      this.setValue(this.getAttribute("value") ?? 0);
+      this.render();
+      const barContainer = this.shadowRoot.querySelector(".bar-container");
+      barContainer.addEventListener("click", ({ offsetX }) => {
+        const size = barContainer.getBoundingClientRect().width;
+        const targetSize = Math.min(Math.max(0, offsetX), size);
+        const percentage = ~~((targetSize * 100) / size);
+
+        this.id === "current-song" && emitEvent("song:changetime", this, percentage);
+        this.id === "volume" && emitEvent("volume:change", this, percentage);
+
+        this.setValue(percentage);
+      });
+
+      barContainer.addEventListener("wheel", ({ deltaY }) => {
+        const STEP = 0.05;
+        const delta = deltaY < 0 ? STEP : -STEP;
+        this.id === "current-song" && emitEvent("song:slidetime", this, delta);
+        this.id === "volume" && emitEvent("volume:slide", this, delta);
+
+        const oldValue = Number(this.getAttribute("value"));
+        const value = Math.max(0, Math.min(oldValue + (delta * 100), 100));
+        this.setValue(value);
+      });
+    }
+
+    setValue(value) {
+      this.setAttribute("value", value);
+      this.style.setProperty("--progress", `${value}%`);
+    }
+
+    render() {
+      this.shadowRoot.innerHTML = /* html */`
+        <style>${ProgressSlider.styles}</style>
+        <div class="bar-container">
+          <div class="bar"></div>
+        </div>
+      `;
+    }
+  }
+
+  customElements.define("progress-slider", ProgressSlider);
+</script>

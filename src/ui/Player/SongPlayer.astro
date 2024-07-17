@@ -1,7 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
 import MusicPlayer from "@/components/MusicPlayer.astro";
+import ProgressSlider from "@/components/ProgressSlider.astro";
 ---
+
+<ProgressSlider />
 
 <style>
   .song-player-container {
@@ -24,6 +27,10 @@ import MusicPlayer from "@/components/MusicPlayer.astro";
         background: none;
         border: 0;
         font-size: 1rem;
+
+        &.disabled svg {
+          color: #444;
+        }
       }
 
       & .circle {
@@ -71,20 +78,18 @@ import MusicPlayer from "@/components/MusicPlayer.astro";
 
 <div class="song-player-container">
   <div class="buttons">
-    <button class="shuffle"><Icon name="shuffle" /></button>
+    <button class="shuffle disabled"><Icon name="shuffle" /></button>
     <button class="prev"><Icon name="backward" /></button>
     <button class="play circle">
       <div class="play"><Icon name="play" /></div>
       <div class="pause" hidden><Icon name="pause" /></div>
     </button>
     <button class="next"><Icon name="forward" /></button>
-    <button class="repeat"><Icon name="repeat" /></button>
+    <button class="repeat disabled"><Icon name="repeat" /></button>
   </div>
   <div class="time-container">
     <time>00:00</time>
-    <div class="bar-container">
-      <div class="bar"></div>
-    </div>
+    <progress-slider id="current-song"></progress-slider>
     <time>00:00</time>
   </div>
 </div>

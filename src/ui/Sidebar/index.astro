@@ -5,8 +5,10 @@ import TopSidebar from "./TopSidebar.astro";
 
 <style>
   .container {
-    display: grid;
-    grid-template-rows: 125px 1fr;
+    /* display: grid;
+    grid-template-rows: 125px 1fr; */
+    display: flex;
+    flex-direction: column;
     height: 100%;
     gap: 1rem 0;
   }
@@ -19,6 +21,7 @@ import TopSidebar from "./TopSidebar.astro";
   .main-sidebar {
     background: var(--medium-bgcolor);
     border-radius: var(--border-radius);
+    height: 100%;
   }
 </style>
 

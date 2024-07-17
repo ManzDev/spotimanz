@@ -12,27 +12,10 @@ import { Icon } from "astro-icon/components";
     grid-template-columns: 50px 1fr;
     gap: 0 0.1rem;
     align-items: center;
-
-    & .bar-container {
-      --progress: 100%;
-
-      background: #666;
-      height: 5px;
-      border-radius: 2px;
-      overflow: hidden;
-
-      & .bar {
-        background: #fff;
-        width: var(--progress);
-        height: 100%;
-      }
-    }
   }
 </style>
 
 <div class="song-volume-container">
   <Icon name="volume-50" />
-  <div class="bar-container">
-    <div class="bar"></div>
-  </div>
+  <progress-slider id="volume" value="100"></progress-slider>
 </div>

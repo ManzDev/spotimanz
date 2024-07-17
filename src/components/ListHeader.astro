@@ -1,107 +1,153 @@
 ---
 import { Icon } from "astro-icon/components";
 import BalloonButton from "@/components/BalloonButton.astro";
-
-const coverPlaylist = "/playlist/chilldev.webp";
 ---
 
-<style>
-  header {
-    display: flex;
-    flex-direction: column;
+<BalloonButton />
 
-    & .top {
-      display: flex;
-      padding: 1.25rem;
+<script type="module">
+  import { formatTime, convertToSeconds } from "/modules/formatTime.js";
 
-      & :is(nav, .main) {
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      & .main {
-        margin-left: auto;
-      }
+  class ListHeader extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
     }
 
-    & .data {
-      display: flex;
-      gap: 0 2rem;
-      padding: 1.5rem;
-
-      & .cover {
-        --size: 256px;
-
-        width: var(--size);
-        height: var(--size);
-        border-radius: 6px;
-        box-shadow:
-          0 4px 10px #0008,
-          0 0 20px #000a;
-      }
-
-      & .avatar {
-        --size: 32px;
-
-        width: var(--size);
-        height: var(--size);
-        background-image: url("/manzdev.png");
-        background-size: cover;
-        border-radius: 50%;
-      }
-
-      & .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-
-        font-family: var(--default-font);
-
-        & .row {
+    static get styles() {
+      return /* css */`
+        header {
           display: flex;
-          gap: 0.5rem;
-          align-items: center;
-        }
+          flex-direction: column;
 
-        & h1 {
-          margin: 0;
-          font-size: 5rem;
-          font-weight: 800;
-          letter-spacing: -4px;
-        }
+          & .top {
+            display: flex;
+            padding: 1.25rem;
 
-        & .total-duration {
-          color: var(--dark-textcolor);
+            & :is(nav, .main) {
+              display: flex;
+              gap: 0.5rem;
+            }
+
+            & .main {
+              margin-left: auto;
+            }
+          }
+
+          & .data {
+            display: flex;
+            gap: 0 2rem;
+            padding: 1.5rem;
+
+            & .cover {
+              --size: 256px;
+
+              width: var(--size);
+              height: var(--size);
+              border-radius: 6px;
+              box-shadow:
+                0 4px 10px #0008,
+                0 0 20px #000a;
+            }
+
+            & .avatar {
+              --size: 32px;
+
+              width: var(--size);
+              height: var(--size);
+              background-image: url("/manzdev.png");
+              background-size: cover;
+              border-radius: 50%;
+            }
+
+            & .info {
+              display: flex;
+              flex-direction: column;
+              justify-content: end;
+
+              font-family: var(--default-font);
+
+              & .row {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+              }
+
+              & h1 {
+                margin: 0;
+                font-size: 5rem;
+                font-weight: 800;
+                letter-spacing: -4px;
+              }
+
+              & .total-duration {
+                color: var(--dark-textcolor);
+              }
+            }
+          }
         }
-      }
+      `;
+    }
+
+    setData(title) {
+      const songItems = [...document.querySelectorAll(".song.playlist song-item")];
+      const slug = title.toLowerCase();
+      const total = songItems.length;
+      const duration = songItems
+        .map(song => convertToSeconds(song.duration))
+        .reduce((first, acc) => first + acc, 0);
+      const [min] = formatTime(duration).split(":");
+      const time = `${min} min `;
+      this.shadowRoot.querySelector("img.cover").src = `/playlist/${slug}.webp`;
+      this.shadowRoot.querySelector("h1").textContent = title;
+      this.shadowRoot.querySelector(".info-subtitle").textContent = `ManzDev · ${total} canciones,`;
+      this.shadowRoot.querySelector(".total-duration").textContent = `${time} de duración aproximadamente`;
+    }
+
+    connectedCallback() {
+      this.render();
+    }
+
+    render() {
+      this.shadowRoot.innerHTML = /* html */`
+        <style>${ListHeader.styles}</style>
+        <header>
+          <div class="top">
+            <nav>
+              <balloon-button><slot name="left"></slot></balloon-button>
+              <balloon-button disabled><slot name="right"></slot></balloon-button>
+            </nav>
+            <div class="main">
+              <balloon-button class="large" href="https://music.manz.dev/">
+                <slot name="download"></slot> Visitar music.manz.dev
+              </balloon-button>
+              <balloon-button><slot name="bell"></slot></balloon-button>
+              <balloon-button class="avatar" href="https://manz.dev/"></balloon-button>
+            </div>
+          </div>
+          <div class="data">
+            <img class="cover" src="/playlist/musicdev.webp" alt="ManzDev">
+            <div class="info">
+              <strong>Lista</strong>
+              <h1>MusicDev</h1>
+              <div class="row">
+                <div class="avatar"></div>
+                <span class="info-subtitle">ManzDev · 15 canciones,</span>
+                <span class="total-duration">42 min de duración aproximadamente</span>
+              </div>
+            </div>
+          </div>
+        </header>
+      `;
     }
   }
-</style>
 
-<header>
-  <div class="top">
-    <nav>
-      <BalloonButton><Icon name="chevron-left" /></BalloonButton>
-      <BalloonButton disabled><Icon name="chevron-right" /></BalloonButton>
-    </nav>
-    <div class="main">
-      <BalloonButton class="large" href="https://music.manz.dev/">
-        <Icon name="download" /> Visitar music.manz.dev
-      </BalloonButton>
-      <BalloonButton><Icon name="bell" /></BalloonButton>
-      <BalloonButton class="avatar" href="https://manz.dev/"></BalloonButton>
-    </div>
-  </div>
-  <div class="data">
-    <img class="cover" src={coverPlaylist} alt="ManzDev">
-    <div class="info">
-      <strong>Lista</strong>
-      <h1>MusicDev</h1>
-      <div class="row">
-        <div class="avatar"></div>
-        <span class="info-subtitle">ManzDev · 15 canciones,</span>
-        <span class="total-duration">1h 20 min aproximadamente</span>
-      </div>
-    </div>
-  </div>
-</header>
+  customElements.define("list-header", ListHeader);
+</script>
+
+<list-header>
+  <Icon name="chevron-right" slot="right" />
+  <Icon name="chevron-left" slot="left" />
+  <Icon name="download" slot="download" />
+  <Icon name="bell" slot="bell" />
+</list-header>

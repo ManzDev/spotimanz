@@ -9,8 +9,10 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
 
 <style>
   .container {
-    display: grid;
-    grid-template-rows: 125px 1fr;
+    /* display: grid;
+    grid-template-rows: 125px 1fr;*/
+    display: flex;
+    flex-direction: column;
     height: 100%;
   }
 
@@ -49,6 +51,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
   .playlist-container {
     font-family: var(--default-font);
     font-size: 0.9rem;
+    height: 100%;
 
     & .search-container {
       display: flex;
@@ -103,7 +106,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
 
     <div class="search-container">
       <Icon name="search" />
-      <input type="search">
+      <input type="search" disabled>
       <span>Recientes <Icon name="list" /></span>
     </div>
 

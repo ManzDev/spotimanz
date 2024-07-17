@@ -1,8 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
-const { slug, title, subtitle, pinned } = Astro.props;
+// import { getDominantColor } from "@/modules/getDominantColor.server.js";
+const { slug, title, subtitle, pinned, color } = Astro.props;
 
 const image = `/playlist/${slug}.webp`;
+// const color = await getDominantColor(image);
 ---
 
 <style>
@@ -48,7 +50,7 @@ const image = `/playlist/${slug}.webp`;
   }
 </style>
 
-<div class="playlist-item">
+<div class="playlist-item" data-id={slug} data-color={color}>
 
   <img src={image} alt={title} />
 
