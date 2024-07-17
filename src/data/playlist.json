@@ -1,6 +1,7 @@
 [
-  { "slug": "musicdev", "title": "music.manz.dev", "subtitle": "Lista · MusicDev", "pinned": true },
-  { "slug": "metaldev", "title": "Edición Metal/Rock", "subtitle": "Lista · MetalDev", "pinned": false },
-  { "slug": "chilldev", "title": "Edición Chill/Synth", "subtitle": "Lista · ChillDev", "pinned": false },
-  { "slug": "alternativedev", "title": "Edición Alternative", "subtitle": "Lista · AlternativeDev", "pinned": false }
+  { "slug": "musicdev", "title": "MusicDev", "subtitle": "Lista · MusicDev", "pinned": true, "color": "#f007c3" },
+  { "slug": "metaldev", "title": "MetalDev", "subtitle": "Lista · Metal/Rock", "pinned": false, "color": "#ff0200" },
+  { "slug": "chilldev", "title": "ChillDev", "subtitle": "Lista · Chill/Synth", "pinned": false, "color": "#0dbce7" },
+  { "slug": "beatdev", "title": "BeatDev", "subtitle": "Lista · Dance/Trance", "pinned": false, "color": "#08d437" },
+  { "slug": "alternativedev", "title": "AlternativeDev", "subtitle": "Lista · Alternative", "pinned": false, "color": "#ebbc11" }
 ]
