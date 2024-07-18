@@ -26,8 +26,8 @@
         atropos-component {
           --size: 512px;
 
-          width: var(--size);
-          height: var(--size);
+          max-width: var(--size);
+          max-height: var(--size);
           position: absolute;
           z-index: 5;
           padding: 0;
@@ -35,6 +35,11 @@
           position: absolute;
           left: calc(50% - var(--size) / 2);
           top: calc(50% - var(--size) / 2);
+
+          & img {
+            max-width: var(--size);
+            max-height: var(--size);
+          }
 
           /*
           &::before {
