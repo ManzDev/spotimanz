@@ -26,9 +26,8 @@
         atropos-component {
           --size: 512px;
 
-          max-width: var(--size);
-          max-height: var(--size);
-          position: absolute;
+          width: var(--size);
+          height: var(--size);
           z-index: 5;
           padding: 0;
           border: 0;
@@ -37,38 +36,48 @@
           top: calc(50% - var(--size) / 2);
 
           & img {
+            width: var(--size);
+            height: var(--size);
+          }
+
+          & .cover {
             max-width: var(--size);
             max-height: var(--size);
-          }
-
-          /*
-          &::before {
-            content: "";
-            background: url("/cover-texture.jpg");
-            width: 100%;
-            height: 100%;
-            background-size: 1024px 1024px;
-            background-position: center;
-            mix-blend-mode: screen;
-            opacity: 25%;
-            position: absolute;
-
-            pointer-events: none;
-          }
-
-          &::after {
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(#0000 70%, #000);
-            background-size: cover;
-            position: absolute;
-            mix-blend-mode: overlay;
             z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
 
-            pointer-events: none;
+            &::after {
+              content: "";
+              background: url("/cover-texture.jpg");
+              width: calc(var(--size) + 60px);
+              height: calc(var(--size) + 60px);
+              background-size: calc(var(--size) + 30px) calc(var(--size) + 30px);
+              background-position: center;
+              mix-blend-mode: screen;
+              opacity: 25%;
+              position: absolute;
+              top: -30px;
+              left: -30px;
+              pointer-events: none;
+            }
+
+            &::before {
+              content: "";
+              width: var(--size);
+              height: var(--size);
+              background: radial-gradient(#0000 70%, #000);
+              background-size: cover;
+              background-position: center;
+              position: absolute;
+              mix-blend-mode: overlay;
+              z-index: 10;
+              top: 0;
+              left: 0;
+              pointer-events: none;
+            }
           }
-          */
 
           & .img {
             width: 100%;
@@ -88,7 +97,7 @@
       this.shadowRoot.innerHTML = /* html */`
         <style>${CoverCard.styles}</style>
         <atropos-component>
-          <img src="${this.image}" alt="">
+          <img src="${this.image}" alt="Cover Single Image">
         </atropos-component>
       `;
     }
