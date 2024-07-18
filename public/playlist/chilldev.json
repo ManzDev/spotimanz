@@ -24,6 +24,14 @@
     "duration": "01:50"
   },
   {
+    "title": "Resolví el problema (Reggae Version)",
+    "artist": "ManzDev feat. Rafaromevi",
+    "slug": "tengo-un-gran-problema-reggae-version",
+    "album": "ChillDev",
+    "date": "2024-06-05T00:00:00",
+    "duration": "02:00"
+  },
+  {
     "title": "En mi local funcionaba (Instrumental story version)",
     "artist": "ManzDev",
     "slug": "en-mi-local-funcionaba-instrumental-story-version",
@@ -64,6 +72,14 @@
     "duration": "02:44"
   },
   {
+    "title": "Resolví el problema (Appalachian Folk Version)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-appalachian-folk-version",
+    "album": "ChillDev",
+    "date": "2024-07-02T00:00:00",
+    "duration": "02:59"
+  },
+  {
     "title": "Yo ya soy inmortal (ChillSynth Remix)",
     "artist": "ManzDev",
     "slug": "yo-ya-soy-inmortal-chillsynth-remix",
@@ -78,5 +94,13 @@
     "album": "ChillDev",
     "date": "2024-07-15T00:00:00",
     "duration": "03:36"
+  },
+  {
+    "title": "Resolví el problema (Slow Edit)",
+    "artist": "ManzDev",
+    "slug": "yo-ya-soy-inmortal-slow-edit",
+    "album": "ChillDev",
+    "date": "2024-07-10T00:00:00",
+    "duration": "02:51"
   }
 ]

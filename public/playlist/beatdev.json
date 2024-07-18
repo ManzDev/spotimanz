@@ -1,3 +1,58 @@
 [
-
+  {
+    "title": "Resolví el problema (Epic Mix)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-epic-mix",
+    "album": "BeatDev",
+    "date": "2024-06-02T00:00:00",
+    "duration": "03:04"
+  },
+  {
+    "title": "Amor imposible (Chilldance version)",
+    "artist": "ManzDev",
+    "slug": "amor-imposible-chilldance-version",
+    "album": "BeatDev",
+    "date": "2024-06-18T00:00:00",
+    "duration": "01:58"
+  },
+  {
+    "title": "El navegador olvidado (Synthwave Version)",
+    "artist": "ManzDev",
+    "slug": "el-navegador-olvidado-synthwave-version",
+    "album": "BeatDev",
+    "date": "2024-06-21T00:00:00",
+    "duration": "03:43"
+  },
+  {
+    "title": "Resolví el problema (Electro Tango Version)",
+    "artist": "RadioAuchi featuring ChrisvDev",
+    "slug": "resolvi-el-problema-electro-tango-version",
+    "album": "BeatDev",
+    "date": "2024-06-15T00:00:00",
+    "duration": "02:42"
+  },
+  {
+    "title": "El último humano (ElectroSynth Version)",
+    "artist": "ManzDev",
+    "slug": "el-ultimo-humano-electrosynth-version",
+    "album": "BeatDev",
+    "date": "2024-06-15T00:00:00",
+    "duration": "03:34"
+  },
+  {
+    "title": "React so good",
+    "artist": "afor_digital feat. ManzDev",
+    "slug": "react-so-good",
+    "album": "BeatDev",
+    "date": "2024-06-18T00:00:00",
+    "duration": "02:28"
+  },
+  {
+    "title": "Resolví el problema (Trance Remix)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-trance-remix",
+    "album": "BeatDev",
+    "date": "2024-07-14T00:00:00",
+    "duration": "03:26"
+  }
 ]
