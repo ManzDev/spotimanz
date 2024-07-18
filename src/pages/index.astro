@@ -4,14 +4,19 @@ import Titlebar from "@/ui/Titlebar/index.astro";
 import Sidebar from "@/ui/Sidebar/index.astro";
 import Content from "@/ui/Content/index.astro";
 import Player from "@/ui/Player/index.astro";
+import CoverCard from "@/components/CoverCard.astro";
 
 const title = "SpotiManz";
 ---
 
+<CoverCard />
+
 <style>
   .container {
     display: grid;
-    grid-template-rows: 3rem 1fr 6rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 32px 1fr 100px;
+    justify-content: center;
     background: var(--dark-bgcolor);
     padding: 1rem;
   }
@@ -26,7 +31,8 @@ const title = "SpotiManz";
   }
 
   .content {
-    padding: 0 1rem;
+    padding: 0;
+    padding-left: 1rem;
   }
 </style>
 

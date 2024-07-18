@@ -13,7 +13,8 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
     grid-template-rows: 125px 1fr;*/
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /*height: 100%;*/
+    /* overflow-y: scroll; */
   }
 
   .titlebar-container {
@@ -51,7 +52,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
   .playlist-container {
     font-family: var(--default-font);
     font-size: 0.9rem;
-    height: 100%;
+    /* height: 100%; */
 
     & .search-container {
       display: flex;
@@ -79,8 +80,13 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
       flex-direction: column;
       gap: 0 0.5rem;
       padding: 0 0.5rem;
-      height: 100%;
+      /* height: 100%; */
+      overflow-y: scroll;
     }
+
+    .playlist::-webkit-scrollbar { width: 12px; }
+    .playlist::-webkit-scrollbar-thumb { background: #4442; border-radius: 0 15px 15px 0; }
+    .playlist::-webkit-scrollbar-track { background: transparent; }
 
   }
 </style>

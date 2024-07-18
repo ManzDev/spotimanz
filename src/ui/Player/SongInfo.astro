@@ -49,6 +49,18 @@ const artist = "ManzDev";
 </style>
 
 <script type="module">
+  const addCoverCard = (link) => {
+    const existentCoverCard = document.querySelector("cover-card");
+    if (existentCoverCard) existentCoverCard.remove();
+
+    const coverCard = document.createElement("cover-card");
+    coverCard.setAttribute("src", link);
+    document.body.append(coverCard);
+  }
+
+  const image = document.querySelector(".song-info-container img");
+  image.addEventListener("click", () => addCoverCard(image.src));
+
   document.addEventListener("player:update-info", ({ detail }) => {
     const { title, artist, slug, album } = detail;
 
@@ -61,6 +73,8 @@ const artist = "ManzDev";
     artistTag.textContent = artist;
     imageTag.src = `/playlist/${album.toLowerCase()}/${slug}.webp`;
     imageTag.alt = title;
+
+    addCoverCard(imageTag.src);
   });
 </script>
 
