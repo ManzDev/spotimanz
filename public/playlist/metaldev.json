@@ -78,5 +78,13 @@
     "album": "MetalDev",
     "date": "2024-06-20T00:00:00",
     "duration": "03:58"
+  },
+  {
+    "title": "Ayudame Bootstrap (Rock version)",
+    "artist": "ManzDev",
+    "slug": "ayudame-bootstrap-rock-version",
+    "album": "MetalDev",
+    "date": "2024-06-23T00:00:00",
+    "duration": "03:45"
   }
 ]

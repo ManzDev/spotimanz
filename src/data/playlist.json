@@ -2,6 +2,5 @@
   { "slug": "musicdev", "title": "MusicDev", "subtitle": "Lista - MusicDev", "pinned": true, "color": "#f007c3" },
   { "slug": "metaldev", "title": "MetalDev", "subtitle": "Lista - Metal/Rock", "pinned": false, "color": "#ff0200" },
   { "slug": "chilldev", "title": "ChillDev", "subtitle": "Lista - Chill/Synth", "pinned": false, "color": "#0dbce7" },
-  { "slug": "beatdev", "title": "BeatDev", "subtitle": "Lista - Dance/Trance", "pinned": false, "color": "#08d437" },
-  { "slug": "alternativedev", "title": "AlternativeDev", "subtitle": "Lista - Alternative", "pinned": false, "color": "#ebbc11" }
+  { "slug": "beatdev", "title": "BeatDev", "subtitle": "Lista - Dance/Trance", "pinned": false, "color": "#08d437" }
 ]
