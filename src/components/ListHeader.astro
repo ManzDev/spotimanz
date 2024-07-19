@@ -16,6 +16,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
 
     static get styles() {
       return /* css */`
+        :host {
+          mix-blend-mode: normal;
+          z-index: 5;
+        }
         header {
           display: flex;
           flex-direction: column;
@@ -121,6 +125,9 @@ import BalloonButton from "@/components/BalloonButton.astro";
               <balloon-button class="large" href="https://music.manz.dev/">
                 <slot name="download"></slot> Visitar music.manz.dev
               </balloon-button>
+              <balloon-button class="large" href="https://github.com/manzdev/spotimanz">
+                <slot name="star"></slot> GitHub
+              </balloon-button>
               <balloon-button><slot name="bell"></slot></balloon-button>
               <balloon-button class="avatar" href="https://manz.dev/"></balloon-button>
             </div>
@@ -149,5 +156,6 @@ import BalloonButton from "@/components/BalloonButton.astro";
   <Icon name="chevron-right" slot="right" />
   <Icon name="chevron-left" slot="left" />
   <Icon name="download" slot="download" />
+  <Icon name="star" slot="star" />
   <Icon name="bell" slot="bell" />
 </list-header>

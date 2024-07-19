@@ -16,10 +16,11 @@ El objetivo de este proyecto es aprender a utilizar Astro, Javascript vanilla y 
 ### Prioritarias
 
 - Reorganizar código en Astro
+- Implementar el shuffle (random)
+- Añadir permalinks con anchor para acceder a listas especificas
 
 ### No prioritarias
 
-- Implementar el shuffle (random).
 - Implementar un skeleton para cuando esté cargando
 - Animaciones y feedback al usuario en controles
 - Memoizar las funciones de actualización del timeUpdate

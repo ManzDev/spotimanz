@@ -50,13 +50,13 @@
 
             &::after {
               content: "";
-              background: url("/cover-texture.jpg");
+              background: url("/player/cover-texture.jpg");
               width: calc(var(--size) + 60px);
               height: calc(var(--size) + 60px);
               background-size: calc(var(--size) + 30px) calc(var(--size) + 30px);
               background-position: center;
               mix-blend-mode: screen;
-              opacity: 25%;
+              opacity: 15%;
               position: absolute;
               top: -30px;
               left: -30px;
@@ -65,9 +65,9 @@
 
             &::before {
               content: "";
-              width: var(--size);
-              height: var(--size);
-              background: radial-gradient(#0000 70%, #000);
+              width: calc(var(--size) + 60px);
+              height: calc(var(--size) + 60px);
+              background: radial-gradient(#0000 50%, #000);
               background-size: cover;
               background-position: center;
               position: absolute;
@@ -98,6 +98,7 @@
         <style>${CoverCard.styles}</style>
         <atropos-component>
           <img src="${this.image}" alt="Cover Single Image">
+          <div class="cover"></div>
         </atropos-component>
       `;
     }

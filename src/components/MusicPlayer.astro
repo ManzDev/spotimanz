@@ -16,8 +16,6 @@
     repeat: document.querySelector(".song-player-container .repeat")
   }
 
-  document.querySelector(".buttons").addEventListener("click", ({ target}) => console.log(target));
-
   buttons.play.addEventListener("click", () => musicPlayer.play());
   buttons.prev.addEventListener("click", () => musicPlayer.prev());
   buttons.next.addEventListener("click", () => musicPlayer.next());
@@ -40,8 +38,6 @@
   });
 
   /* Songlist */
-
-  window.musicPlayer = musicPlayer;
 
   const songPlaylist = document.querySelector(".song.playlist");
   songPlaylist.addEventListener("click", (ev) => {

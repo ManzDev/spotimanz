@@ -13,9 +13,25 @@ import { Icon } from "astro-icon/components";
     gap: 0 0.1rem;
     align-items: center;
   }
+
+  .volume-icon {
+    display: grid;
+    place-items: center;
+  }
 </style>
 
 <div class="song-volume-container">
-  <Icon name="volume-50" />
+  <div class="volume-icon">
+    <div class="icon"><Icon name="volume" /></div>
+    <div class="icon" hidden><Icon name="volume-off" /></div>
+  </div>
   <progress-slider id="volume" value="100"></progress-slider>
 </div>
+
+<script type="module">
+  const volumeIcon = document.querySelector(".volume-icon");
+  const volumeSlider = document.querySelector("#volume");
+
+  document.addEventListener("volume:mute", () => toggleVolumeIcon(false));
+  document.addEventListener("volume:unmute", () => toggleVolumeIcon(true));
+</script>

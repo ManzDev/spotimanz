@@ -73,6 +73,7 @@ const artist = "ManzDev";
     artistTag.textContent = artist;
     imageTag.src = `/player/playlist/${album.toLowerCase()}/${slug}.webp`;
     imageTag.alt = title;
+    document.body.style.setProperty("--song-image", `url(${imageTag.src})`);
 
     addCoverCard(imageTag.src);
   });

@@ -1,5 +1,6 @@
 import { emitEvent } from "./emitter.js";
 import { formatTime } from "./formatTime.js";
+import { toggleVolumeIcon } from "./ui/volume.js";
 
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
@@ -32,12 +33,16 @@ export class MusicPlayer {
     });
 
     document.addEventListener("volume:change", ({ detail }) => {
-      this.globalVolume = detail / 100;
+      const newValue = detail / 100;
+      this.detectMuteUnmute(newValue);
+      this.globalVolume = newValue;
       this.updateVolume();
     });
 
     document.addEventListener("volume:slide", ({ detail }) => {
-      this.globalVolume = Math.max(0, Math.min(1, this.globalVolume + detail));
+      const newValue = Math.max(0, Math.min(1, this.globalVolume + detail));
+      this.detectMuteUnmute(newValue);
+      this.globalVolume = newValue;
       this.updateVolume();
     });
 
@@ -58,6 +63,15 @@ export class MusicPlayer {
     });
 
     this.updateList(songs);
+  }
+
+  detectMuteUnmute(detail) {
+    if (detail / 100 === 0 && this.globalVolume > 0) {
+      emitEvent("volume:mute", document, null);
+    }
+    else if (detail / 100 > 0 && this.globalVolume === 0) {
+      emitEvent("volume:unmute", document, null);
+    }
   }
 
   get isShuffle() {
@@ -94,8 +108,10 @@ export class MusicPlayer {
   play() {
     this.updateVolume();
     if (this.currentSong.paused) {
+      const isResume = this.currentSong.currentTime < 1;
       this.currentSong.play();
-      this.sendInfo();
+      if (isResume)
+        this.sendInfo();
     }
     else
       this.currentSong.pause();
