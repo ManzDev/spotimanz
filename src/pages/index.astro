@@ -13,21 +13,37 @@ const title = "Music Manz Player - Manz.dev";
 
 <style>
   .container {
+    --player-height: 125px;
+
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 32px 1fr 100px;
     justify-content: center;
     background: var(--dark-bgcolor);
     padding: 1rem;
   }
 
+  .titlebar {
+    height: 20px;
+    padding-bottom: 10px;
+  }
+
   .player {
     background: var(--dark-bgcolor);
+    height: var(--player-height);
+    width: 100%;
+    display: grid;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    z-index: 25;
+    box-sizing: border-box;
   }
 
   .content-container {
     display: grid;
     grid-template-columns: 300px 1fr;
+    height: calc(100% - var(--player-height));
   }
 
   .content {
