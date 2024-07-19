@@ -1,11 +1,11 @@
 ---
 ---
 <script type="module">
-  import { emitEvent } from "/modules/emitter.js";
-  import { MusicPlayer } from "/modules/MusicPlayer.js";
+  import { emitEvent } from "/player/modules/emitter.js";
+  import { MusicPlayer } from "/player/modules/MusicPlayer.js";
   const PLAYLIST = "musicdev";
 
-  let songs = await fetch(`/playlist/${PLAYLIST}.json`).then(response => response.json());
+  let songs = await fetch(`/player/playlist/${PLAYLIST}.json`).then(response => response.json());
   const musicPlayer = new MusicPlayer(songs);
 
   const buttons = {
@@ -32,7 +32,7 @@
     playlist.addEventListener("click", async () => {
       const slug = playlist.dataset.id;
       const title = playlist.querySelector(".title").textContent;
-      songs = await fetch(`/playlist/${slug}.json`).then(response => response.json());
+      songs = await fetch(`/player/playlist/${slug}.json`).then(response => response.json());
       musicPlayer.updateList(songs);
       listHeader.setData(title);
       document.body.style.setProperty("--theme-color", playlist.dataset.color);

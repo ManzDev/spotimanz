@@ -1,5 +1,5 @@
 import { emitEvent } from "./emitter.js";
-import { formatTime } from "/modules/formatTime.js";
+import { formatTime } from "./formatTime.js";
 
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
@@ -87,7 +87,7 @@ export class MusicPlayer {
     if (this.songList.length === 0) return;
     this.currentSongIndex = index;
     const song = this.songList[this.currentSongIndex];
-    this.currentSong.src = "/playlist/" + song.album.toLowerCase() + "/" + song.slug + ".mp3";
+    this.currentSong.src = "/player/playlist/" + song.album.toLowerCase() + "/" + song.slug + ".mp3";
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
   }
 

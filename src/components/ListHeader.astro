@@ -6,7 +6,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
 <BalloonButton />
 
 <script type="module">
-  import { formatTime, convertToSeconds } from "/modules/formatTime.js";
+  import { formatTime, convertToSeconds } from "/player/modules/formatTime.js";
 
   class ListHeader extends HTMLElement {
     constructor() {
@@ -55,7 +55,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
 
               width: var(--size);
               height: var(--size);
-              background-image: url("/manzdev.png");
+              background-image: url("/player/manzdev.png");
               background-size: cover;
               border-radius: 50%;
             }
@@ -98,7 +98,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
         .reduce((first, acc) => first + acc, 0);
       const [min] = formatTime(duration).split(":");
       const time = `${min} min `;
-      this.shadowRoot.querySelector("img.cover").src = `/playlist/${slug}.webp`;
+      this.shadowRoot.querySelector("img.cover").src = `/player/playlist/${slug}.webp`;
       this.shadowRoot.querySelector("h1").textContent = title;
       this.shadowRoot.querySelector(".info-subtitle").textContent = `ManzDev · ${total} canciones,`;
       this.shadowRoot.querySelector(".total-duration").textContent = `${time} de duración aproximadamente`;
@@ -126,7 +126,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
             </div>
           </div>
           <div class="data">
-            <img class="cover" src="/playlist/musicdev.webp" alt="ManzDev">
+            <img class="cover" src="/player/playlist/musicdev.webp" alt="ManzDev">
             <div class="info">
               <strong>Lista</strong>
               <h1>MusicDev</h1>
