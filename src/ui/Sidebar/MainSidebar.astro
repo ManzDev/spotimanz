@@ -57,7 +57,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
     & .search-container {
       display: flex;
       align-items: center;
-      padding: 0 1rem;
+      padding: 0.5rem 1rem;
 
       & input[type="search"] {
         border: 0;
@@ -98,7 +98,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
         <RowItem icon="books" label="Tu biblioteca" />
       </div>
       <div class="buttons">
-        <Icon name="plus" />
+        <span></span>
         <Icon name="arrow-right" />
       </div>
       <div class="filters">
@@ -111,9 +111,7 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
   <div class="playlist-container">
 
     <div class="search-container">
-      <Icon name="search" />
-      <input type="search" disabled>
-      <span>Recientes <Icon name="list" /></span>
+      <span><Icon name="list" /> Listas</span>
     </div>
 
     <div class="playlist">

@@ -1,6 +1,7 @@
 import { emitEvent } from "./emitter.js";
 import { formatTime } from "./formatTime.js";
 import { toggleVolumeIcon } from "./ui/volume.js";
+import { togglePlayIcon } from "./ui/play.js";
 
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
@@ -101,7 +102,7 @@ export class MusicPlayer {
     if (this.songList.length === 0) return;
     this.currentSongIndex = index;
     const song = this.songList[this.currentSongIndex];
-    this.currentSong.src = "/player/playlist/" + song.album.toLowerCase() + "/" + song.slug + ".mp3";
+    this.currentSong.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.mp3`;
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
   }
 
@@ -126,12 +127,9 @@ export class MusicPlayer {
 
   togglePlayPause(forcePause = false) {
     if (!forcePause) {
-      [...document.querySelectorAll(".buttons .play > div")]
-        .forEach(div => div.toggleAttribute("hidden"));
+      togglePlayIcon();
     } else {
-      const [play, pause] = document.querySelectorAll(".buttons .play > div");
-      play.setAttribute("hidden", "");
-      pause.removeAttribute("hidden");
+      togglePlayIcon(false);
     }
   }
 
