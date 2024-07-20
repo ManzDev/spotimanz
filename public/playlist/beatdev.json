@@ -24,6 +24,14 @@
     "duration": "03:43"
   },
   {
+    "title": "En mi local funcionaba (Breakbeat Version)",
+    "artist": "ManzDev",
+    "slug": "en-mi-local-funcionaba-breakbeat-version",
+    "album": "BeatDev",
+    "date": "2024-06-06T00:00:00",
+    "duration": "02:36"
+  },
+  {
     "title": "Resolví el problema (Electro Tango Version)",
     "artist": "RadioAuchi featuring ChrisvDev",
     "slug": "resolvi-el-problema-electro-tango-version",
@@ -62,5 +70,13 @@
     "album": "BeatDev",
     "date": "2024-07-18T00:00:00",
     "duration": "03:14"
+  },
+  {
+    "title": "En mi local funcionaba (Alternative Dream Version)",
+    "artist": "ManzDev",
+    "slug": "en-mi-local-funcionaba-alternative-dream-version",
+    "album": "BeatDev",
+    "date": "2024-06-20T00:00:00",
+    "duration": "03:59"
   }
 ]
