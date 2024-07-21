@@ -2,6 +2,7 @@ import { emitEvent } from "./emitter.js";
 import { formatTime } from "./formatTime.js";
 import { toggleVolumeIcon } from "./ui/volume.js";
 import { togglePlayIcon } from "./ui/play.js";
+import { shuffle } from "./shuffle.js";
 
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
@@ -15,7 +16,7 @@ export class MusicPlayer {
   constructor(songs) {
     const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
     this.durationTag = durationTag;
-    this.songList = songs;
+    this.updateList(songs);
     this.prepare(0);
     const songProgress = document.querySelector("progress-slider#current-song");
 
@@ -95,7 +96,19 @@ export class MusicPlayer {
   }
 
   setSongs(songs) {
-    this.songList = songs;
+    this.songList = songs.map((song, index) => ({ ...song, index }));
+    this.sortSongs();
+  }
+
+  sortSongs() {
+    if (this.isShuffle) {
+      this.songList = shuffle(this.songList);
+    } else {
+      const newIndex = this.songList[this.currentSongIndex].index;
+      this.songList = this.songList.sort((a, b) => a.index - b.index);
+      this.currentSongIndex = newIndex;
+    }
+    console.log("reorder", this.songList);
   }
 
   prepare(index) {
@@ -140,7 +153,6 @@ export class MusicPlayer {
 
   next() {
     const index = (this.currentSongIndex + 1) % this.songList.length;
-    console.log({ actual: this.currentSongIndex, nuevo: index });
     this.prepare(index);
     this.play();
     this.togglePlayPause(true);

@@ -20,7 +20,10 @@
   buttons.prev.addEventListener("click", () => musicPlayer.prev());
   buttons.next.addEventListener("click", () => musicPlayer.next());
   buttons.repeat.addEventListener("click", () => buttons.repeat.classList.toggle("disabled"));
-  buttons.shuffle.addEventListener("click", () => buttons.shuffle.classList.toggle("disabled"));
+  buttons.shuffle.addEventListener("click", () => {
+    buttons.shuffle.classList.toggle("disabled");
+    musicPlayer.sortSongs();
+  });
 
   /* Sidebar playlist */
 
@@ -48,12 +51,19 @@
       const newSongs = [...document.querySelectorAll("song-item")].map(song => song.getData());
       musicPlayer.setSongs(newSongs);
       const rowItem = ev.composedPath().find(tag => tag.classList?.contains("row-item"));
-      const id = Number(rowItem.dataset.id);
+      let id = Number(rowItem.dataset.id);
+
+      let newIndex = id;
+      if (musicPlayer.isShuffle) {
+        newIndex = musicPlayer.songList.findIndex(song => song.index === id);
+      }
+
       if (rowItem) {
-        musicPlayer.prepare(id);
+        musicPlayer.prepare(newIndex);
         musicPlayer.play();
         musicPlayer.togglePlayPause(true);
       }
     }
+
   });
 </script>
