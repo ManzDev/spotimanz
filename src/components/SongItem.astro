@@ -12,6 +12,10 @@
 
     static get styles() {
       return /* css */`
+        :host {
+          container: songitem / inline-size;
+        }
+
         .row-item {
           display: grid;
           grid-template-columns: var(--playlist-format);
@@ -21,6 +25,13 @@
           padding: 0.25rem 0.5rem;
           border-radius: 5px;
           user-select: none;
+
+          @container songitem (width <= 1000px) {
+            --playlist-format: 25px 1fr min-content;
+
+            & div:nth-child(4),
+            & div:nth-child(5) { display: none }
+          }
 
           & > div:nth-child(4) {
             text-align: center;
@@ -46,7 +57,7 @@
           }
 
           & .group {
-            display: flex;
+            display: inline-flex;
             flex-direction: column;
 
             & .artist {

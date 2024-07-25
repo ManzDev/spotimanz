@@ -11,11 +11,10 @@ const image = `/player/playlist/${slug}.webp`;
   .playlist-item {
     --avatar-size: 55px;
 
-    display: grid;
-    grid-template-columns: calc(var(--avatar-size) * 1.15) 1fr;
+    display: inline-flex;
     align-items: center;
     padding: 0.5rem;
-    gap: 0.25rem;
+    gap: 0.25rem 0.75rem;
     border-radius: 8px;
 
     &:hover {

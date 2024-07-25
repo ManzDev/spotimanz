@@ -16,6 +16,7 @@ import SongItem from "@/components/SongItem.astro";
       var(--translucid-color) 0 25%,
       var(--medium-bgcolor) 80% 100%
     );
+    container: songitem / inline-size;
 
     & header {
       display: grid;
@@ -24,6 +25,13 @@ import SongItem from "@/components/SongItem.astro";
       font-weight: 500;
       font-size: 0.9rem;
       color: var(--dark-textcolor);
+
+      @container songitem (width <= 1000px) {
+        --playlist-format: 25px 1fr min-content;
+
+        & div:nth-child(4),
+        & div:nth-child(5) { display: none }
+      }
 
       & > div {
         padding: 0 0.5rem;

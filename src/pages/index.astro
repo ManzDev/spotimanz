@@ -44,11 +44,20 @@ const title = "Music Manz Player - Manz.dev";
     display: grid;
     grid-template-columns: 300px 1fr;
     height: calc(100% - var(--player-height));
+
+    @media (width <= 1300px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .content {
     padding: 0;
     padding-left: 1rem;
+
+    @media (width <= 1300px) {
+      padding-top: 1rem;
+      padding-left: 0;
+    }
   }
 </style>
 

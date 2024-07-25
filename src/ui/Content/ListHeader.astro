@@ -20,9 +20,12 @@ import BalloonButton from "@/components/BalloonButton.astro";
           mix-blend-mode: normal;
           z-index: 5;
         }
+
         header {
           display: flex;
           flex-direction: column;
+          container: listdata / inline-size;
+          padding-bottom: 1rem;
 
           & .top {
             display: flex;
@@ -42,6 +45,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
             display: flex;
             gap: 0 2rem;
             padding: 1.5rem;
+
+            @container listdata (width <= 900px) {
+              flex-direction: column;
+            }
 
             & .cover {
               --size: 256px;
@@ -68,8 +75,13 @@ import BalloonButton from "@/components/BalloonButton.astro";
               display: flex;
               flex-direction: column;
               justify-content: end;
-
               font-family: var(--default-font);
+
+              @container listdata (width <= 900px) {
+                margin-top: 1rem;
+
+                & strong { display: none }
+              }
 
               & .row {
                 display: flex;

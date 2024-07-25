@@ -9,12 +9,8 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
 
 <style>
   .container {
-    /* display: grid;
-    grid-template-rows: 125px 1fr;*/
     display: flex;
     flex-direction: column;
-    /*height: 100%;*/
-    /* overflow-y: scroll; */
   }
 
   .titlebar-container {
@@ -23,6 +19,10 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
     grid-template-columns: 0.75fr 0.25fr;
     grid-template-rows: 1fr 1fr;
     height: 100px;
+
+    @media (width <= 1300px) {
+      display: none;
+    }
 
     & .buttons {
       display: flex;
@@ -52,7 +52,6 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
   .playlist-container {
     font-family: var(--default-font);
     font-size: 0.9rem;
-    /* height: 100%; */
 
     & .search-container {
       display: flex;
@@ -82,6 +81,13 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
       padding: 0 0.5rem;
       /* height: 100%; */
       overflow-y: scroll;
+      max-width: 90vw;
+
+      @media (width <= 1300px) {
+        display: grid;
+        grid-auto-flow: column dense;
+        overflow-x: scroll;
+      }
     }
 
     .playlist::-webkit-scrollbar { width: 12px; }
