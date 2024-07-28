@@ -14,6 +14,10 @@ import ListHeader from "./ListHeader.astro";
     max-height: 82vh;
     overflow-y: scroll;
 
+    @media (width <= 1300px) {
+      height: calc(100% - 250px - 20px);
+    }
+
     &::before {
       content: "";
       position: absolute;

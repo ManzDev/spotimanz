@@ -17,6 +17,7 @@ export class MusicPlayer {
     const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
     this.durationTag = durationTag;
     this.updateList(songs);
+    this.setSongs(songs);
     this.prepare(0);
     const songProgress = document.querySelector("progress-slider#current-song");
 

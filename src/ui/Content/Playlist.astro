@@ -27,8 +27,9 @@ import SongItem from "@/components/SongItem.astro";
       color: var(--dark-textcolor);
 
       @container songitem (width <= 1000px) {
-        --playlist-format: 25px 1fr min-content;
+        --playlist-format: 135px 1fr;
 
+        & div:nth-child(3),
         & div:nth-child(4),
         & div:nth-child(5) { display: none }
       }

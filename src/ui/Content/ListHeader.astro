@@ -19,6 +19,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
         :host {
           mix-blend-mode: normal;
           z-index: 5;
+
+          @media (width <= 550px) {
+            display: none;
+          }
         }
 
         header {
@@ -30,6 +34,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
           & .top {
             display: flex;
             padding: 1.25rem;
+
+            @media (width <= 1300px) {
+              display: none;
+            }
 
             & :is(nav, .main) {
               display: flex;
@@ -84,7 +92,9 @@ import BalloonButton from "@/components/BalloonButton.astro";
               }
 
               & .row {
-                display: flex;
+                display: grid;
+                grid-auto-flow: column;
+                justify-content: start;
                 gap: 0.5rem;
                 align-items: center;
               }
@@ -94,6 +104,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
                 font-size: 5rem;
                 font-weight: 800;
                 letter-spacing: -4px;
+
+                @media (width <= 1300px) {
+                  font-size: 3rem;
+                }
               }
 
               & .total-duration {
