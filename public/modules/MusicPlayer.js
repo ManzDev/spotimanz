@@ -3,26 +3,36 @@ import { formatTime } from "./formatTime.js";
 import { toggleVolumeIcon } from "./ui/volume.js";
 import { togglePlayIcon } from "./ui/play.js";
 import { shuffle } from "./shuffle.js";
+import { MusicList } from "./MusicList.js";
 
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
+
+const DEFAULT_PLAYLIST = "musicdev";
 
 export class MusicPlayer {
   songList = [];
   currentSongIndex = 0;
   currentSong = new Audio();
+  musicList = new MusicList();
   globalVolume = 1;
-  currentListId = "musicdev";
 
-  constructor(songs) {
-    const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
-    this.durationTag = durationTag;
-    this.updateList(songs);
-    this.setSongs(songs);
-    this.prepare(0);
-    const songProgress = document.querySelector("progress-slider#current-song");
+  constructor() {
+    this.musicList.get(DEFAULT_PLAYLIST).then(songs => {
+      const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
+      this.durationTag = durationTag;
+      this.updateList(songs);
+      this.setSongs(songs);
+      this.prepare(0);
+      this.init();
+      this.updateList(songs);
+    });
+  }
 
+  init() {
     this.currentSong.addEventListener("timeupdate", (ev) => {
+      const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
+      const songProgress = document.querySelector("progress-slider#current-song");
       const mstime = ~~ev.target.currentTime;
       const time = formatTime(mstime);
       currentTimeTag.textContent = time;
@@ -65,8 +75,6 @@ export class MusicPlayer {
         this.next();
       }
     });
-
-    this.updateList(songs);
   }
 
   detectMuteUnmute(detail) {
@@ -86,14 +94,17 @@ export class MusicPlayer {
     return !repeatButton.classList.contains("disabled");
   }
 
-  updateList(songs) {
-    const songPlaylist = document.querySelector(".song.playlist");
-    const oldSongs = songPlaylist.querySelectorAll("song-item");
-    oldSongs.forEach(song => song.remove());
-    songs.forEach((song, index) => {
-      const attrs = Object.entries(song).map(([attr, value]) => `${attr}="${value}"`).join(" ");
-      const element = `<song-item index="${index}" ${attrs}></song-item>`;
-      songPlaylist.insertAdjacentHTML("beforeend", element);
+  async updateList(songs) {
+    return new Promise((resolve, reject) => {
+      const songPlaylist = document.querySelector(".song.playlist");
+      const oldSongs = songPlaylist.querySelectorAll("song-item");
+      oldSongs.forEach(song => song.remove());
+      songs.forEach((song, index) => {
+        const attrs = Object.entries(song).map(([attr, value]) => `${attr}="${value}"`).join(" ");
+        const element = `<song-item index="${index}" ${attrs}></song-item>`;
+        songPlaylist.insertAdjacentHTML("beforeend", element);
+      });
+      resolve();
     });
   }
 
@@ -110,7 +121,6 @@ export class MusicPlayer {
       this.songList = this.songList.sort((a, b) => a.index - b.index);
       this.currentSongIndex = newIndex;
     }
-    // console.log("reorder", this.songList);
   }
 
   prepare(index) {
@@ -133,7 +143,6 @@ export class MusicPlayer {
       this.currentSong.pause();
 
     this.togglePlayPause();
-    this.animatePlay();
   }
 
   updateVolume() {
@@ -148,12 +157,20 @@ export class MusicPlayer {
     }
   }
 
-  animatePlay() {
-    // const button = document.querySelector(".buttons .play");
-    // const animation = button.animate([{ "scale": "1" }, { "scale": "1.1" }, { "scale": "1" }], 200);
+  async selectList(slug, title, color) {
+    const songs = await this.musicList.select(slug, title, color);
+    await this.updateList(songs);
   }
 
   next() {
+    const isEndPlaylist = (this.currentSongIndex + 1) === (this.songList.length);
+    if (isEndPlaylist && !this.isRepeat)
+      this.nextList();
+    else
+      this.nextSong();
+  }
+
+  nextSong() {
     const index = (this.currentSongIndex + 1) % this.songList.length;
     this.prepare(index);
     this.play();
@@ -161,13 +178,11 @@ export class MusicPlayer {
   }
 
   async nextList() {
-    return new Promise((resolve, reject) => {
-      const lists = [...document.querySelectorAll(".main-sidebar .playlist .playlist-item")];
-      const nextListIndex = (lists.findIndex(list => list.dataset.id === this.currentListId) + 1) % lists.length;
-      const nextListId = lists[nextListIndex].click();
-      this.play();
-      resolve();
-    });
+    const { slug, title, color } = await this.musicList.next();
+    await this.selectList(slug, title, color);
+    this.setSongs(this.musicList.getCurrent());
+    this.currentSongIndex = -1;
+    this.nextSong();
   }
 
   prev() {

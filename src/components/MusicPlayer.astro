@@ -3,10 +3,8 @@
 <script type="module">
   import { emitEvent } from "/player/modules/emitter.js";
   import { MusicPlayer } from "/player/modules/MusicPlayer.js";
-  const PLAYLIST = "musicdev";
 
-  let songs = await fetch(`/player/playlist/${PLAYLIST}.json`).then(response => response.json());
-  const musicPlayer = new MusicPlayer(songs);
+  const musicPlayer = new MusicPlayer();
 
   const buttons = {
     play: document.querySelector(".song-player-container .play"),
@@ -27,17 +25,12 @@
 
   /* Sidebar playlist */
 
-  const listHeader = document.querySelector("list-header");
   const playlistItems = document.querySelectorAll(".playlist-item");
   playlistItems.forEach(playlist => {
     playlist.addEventListener("click", async () => {
       const slug = playlist.dataset.id;
       const title = playlist.querySelector(".title").textContent;
-      songs = await fetch(`/player/playlist/${slug}.json`).then(response => response.json());
-      musicPlayer.updateList(songs);
-      musicPlayer.currentListId = slug;
-      listHeader.setData(title);
-      document.body.style.setProperty("--theme-color", playlist.dataset.color);
+      const songs = await musicPlayer.selectList(slug, title, playlist.dataset.color);
     });
   });
 
