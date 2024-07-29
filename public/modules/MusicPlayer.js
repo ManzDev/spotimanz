@@ -12,6 +12,7 @@ export class MusicPlayer {
   currentSongIndex = 0;
   currentSong = new Audio();
   globalVolume = 1;
+  currentListId = "musicdev";
 
   constructor(songs) {
     const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
@@ -109,7 +110,7 @@ export class MusicPlayer {
       this.songList = this.songList.sort((a, b) => a.index - b.index);
       this.currentSongIndex = newIndex;
     }
-    console.log("reorder", this.songList);
+    // console.log("reorder", this.songList);
   }
 
   prepare(index) {
@@ -157,6 +158,16 @@ export class MusicPlayer {
     this.prepare(index);
     this.play();
     this.togglePlayPause(true);
+  }
+
+  async nextList() {
+    return new Promise((resolve, reject) => {
+      const lists = [...document.querySelectorAll(".main-sidebar .playlist .playlist-item")];
+      const nextListIndex = (lists.findIndex(list => list.dataset.id === this.currentListId) + 1) % lists.length;
+      const nextListId = lists[nextListIndex].click();
+      this.play();
+      resolve();
+    });
   }
 
   prev() {

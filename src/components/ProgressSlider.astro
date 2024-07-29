@@ -59,7 +59,7 @@
         const oldValue = Number(this.getAttribute("value"));
         const value = Math.max(0, Math.min(oldValue + (delta * 100), 100));
         this.setValue(value);
-      });
+      }, { passive: true });
     }
 
     setValue(value) {

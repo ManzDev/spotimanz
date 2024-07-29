@@ -62,7 +62,7 @@ const artist = "ManzDev";
   image.addEventListener("click", () => addCoverCard(image.src));
 
   document.addEventListener("player:update-info", ({ detail }) => {
-    console.log({ detail });
+    // console.log({ detail });
     const { title, artist, slug, album } = detail;
 
     const container = document.querySelector(".song-info-container");

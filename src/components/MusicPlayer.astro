@@ -35,6 +35,7 @@
       const title = playlist.querySelector(".title").textContent;
       songs = await fetch(`/player/playlist/${slug}.json`).then(response => response.json());
       musicPlayer.updateList(songs);
+      musicPlayer.currentListId = slug;
       listHeader.setData(title);
       document.body.style.setProperty("--theme-color", playlist.dataset.color);
     });

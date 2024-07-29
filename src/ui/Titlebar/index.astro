@@ -10,6 +10,20 @@ import { Icon } from "astro-icon/components";
     background: var(--dark-bgcolor);
     height: 100%;
     color: var(--light-textcolor);
+
+    & span {
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+    }
+  }
+
+  .ico {
+    --size: 18px;
+
+    width: var(--size);
+    height: var(--size);
+    vertical-align: top;
+    translate: 0 1px;
   }
 
   .control-so {
@@ -21,7 +35,7 @@ import { Icon } from "astro-icon/components";
 
 <div class="container">
   <div class="dots">
-    <Icon name="dots" />
+    <img class="ico" src="https://music.manz.dev/favicon.png" alt="Music Manz Icon" /> <span>Music Manz Player</span>
   </div>
 
   <div class="control-so">

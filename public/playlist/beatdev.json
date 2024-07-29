@@ -64,12 +64,28 @@
     "duration": "03:26"
   },
   {
+    "title": "En mi local funcionaba (House Funk Version)",
+    "artist": "ManzDev",
+    "slug": "en-mi-local-funcionaba-house-funk-version",
+    "album": "BeatDev",
+    "date": "2024-07-28T00:00:00",
+    "duration": "03:07"
+  },
+  {
     "title": "El navegador olvidado (House Funk Mix)",
     "artist": "ManzDev",
     "slug": "el-navegador-olvidado-house-funk-mix",
     "album": "BeatDev",
     "date": "2024-07-18T00:00:00",
     "duration": "03:14"
+  },
+  {
+    "title": "Resolví el problema (Happy Beat version)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-happy-beat-version",
+    "album": "BeatDev",
+    "date": "2024-06-24T00:00:00",
+    "duration": "03:04"
   },
   {
     "title": "En mi local funcionaba (Alternative Dream Version)",
