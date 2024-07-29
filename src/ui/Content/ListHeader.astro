@@ -7,6 +7,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
 
 <script type="module">
   import { formatTime, convertToSeconds } from "/player/modules/formatTime.js";
+  import { emitEvent } from "/player/modules/emitter.js";
 
   class ListHeader extends HTMLElement {
     constructor() {
@@ -136,6 +137,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
 
     connectedCallback() {
       this.render();
+
+      const [prevButton, nextButton] = this.shadowRoot.querySelectorAll("balloon-button");
+      prevButton.addEventListener("click", () => emitEvent("list:prev", document, null));
+      nextButton.addEventListener("click", () => emitEvent("list:next", document, null));
     }
 
     render() {
@@ -144,7 +149,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
         <header>
           <div class="top">
             <nav>
-              <balloon-button><slot name="left"></slot></balloon-button>
+              <balloon-button disabled><slot name="left"></slot></balloon-button>
               <balloon-button disabled><slot name="right"></slot></balloon-button>
             </nav>
             <div class="main">
@@ -154,7 +159,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
               <balloon-button class="large" href="https://github.com/manzdev/spotimanz">
                 <slot name="star"></slot> GitHub
               </balloon-button>
-              <balloon-button><slot name="bell"></slot></balloon-button>
+              <balloon-button disabled><slot name="bell"></slot></balloon-button>
               <balloon-button class="avatar" href="https://manz.dev/"></balloon-button>
             </div>
           </div>

@@ -177,12 +177,20 @@ export class MusicPlayer {
     this.togglePlayPause(true);
   }
 
-  async nextList() {
+  async nextList(forcePlay = true) {
     const { slug, title, color } = await this.musicList.next();
     await this.selectList(slug, title, color);
     this.setSongs(this.musicList.getCurrent());
     this.currentSongIndex = -1;
-    this.nextSong();
+    forcePlay && this.nextSong();
+  }
+
+  async prevList(forcePlay = true) {
+    const { slug, title, color } = await this.musicList.prev();
+    await this.selectList(slug, title, color);
+    this.setSongs(this.musicList.getCurrent());
+    this.currentSongIndex = -1;
+    forcePlay && this.nextSong();
   }
 
   prev() {

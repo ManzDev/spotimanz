@@ -25,6 +25,18 @@ export class MusicList {
     return songs;
   }
 
+  async prev() {
+    return new Promise((resolve, reject) => {
+      const lists = [...document.querySelectorAll(".main-sidebar .playlist .playlist-item")];
+      const nextIndex = (lists.findIndex(list => list.dataset.id === this.currentId) - 1);
+      const nextListIndex = nextIndex >= 0 ? nextIndex : lists.length - 1;
+      const slug = lists[nextListIndex].dataset.id;
+      const color = lists[nextListIndex].dataset.color;
+      const title = lists[nextListIndex].querySelector(".title").textContent;
+      resolve({ slug, title, color });
+    });
+  }
+
   async next() {
     return new Promise((resolve, reject) => {
       const lists = [...document.querySelectorAll(".main-sidebar .playlist .playlist-item")];
