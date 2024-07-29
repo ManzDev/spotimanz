@@ -18,9 +18,9 @@ export class MusicList {
 
   async select(slug, title, color) {
     document.body.style.setProperty("--theme-color", color);
-    const listHeader = document.querySelector("list-header");
-    listHeader.setData(title);
     const songs = await this.get(slug, title);
+    const listHeader = document.querySelector("list-header");
+    listHeader.setData(title, songs);
     this.currentId = slug;
     return songs;
   }

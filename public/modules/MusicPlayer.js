@@ -158,6 +158,7 @@ export class MusicPlayer {
   }
 
   async selectList(slug, title, color) {
+    console.log({ slug, title, color });
     const songs = await this.musicList.select(slug, title, color);
     await this.updateList(songs);
   }

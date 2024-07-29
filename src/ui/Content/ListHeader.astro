@@ -120,11 +120,10 @@ import BalloonButton from "@/components/BalloonButton.astro";
       `;
     }
 
-    setData(title) {
-      const songItems = [...document.querySelectorAll(".song.playlist song-item")];
+    setData(title, songs) {
       const slug = title.toLowerCase();
-      const total = songItems.length;
-      const duration = songItems
+      const total = songs.length;
+      const duration = songs
         .map(song => convertToSeconds(song.duration))
         .reduce((first, acc) => first + acc, 0);
       const [min] = formatTime(duration).split(":");
