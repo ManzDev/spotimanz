@@ -110,7 +110,7 @@ export class MusicPlayer {
 
   setSongs(songs) {
     this.songList = songs.map((song, index) => ({ ...song, index }));
-    this.sortSongs();
+    if (this.isShuffle) this.sortSongs();
   }
 
   sortSongs() {
@@ -158,7 +158,6 @@ export class MusicPlayer {
   }
 
   async selectList(slug, title, color) {
-    console.log({ slug, title, color });
     const songs = await this.musicList.select(slug, title, color);
     await this.updateList(songs);
   }

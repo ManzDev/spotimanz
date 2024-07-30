@@ -3,6 +3,7 @@
 
 <script type="module">
   import AtroposComponent from "https://unpkg.com/atropos@2.0.2/atropos-element.mjs";
+  import { setAnimation } from "/player/modules/setAnimation.js";
   customElements.define("atropos-component", AtroposComponent);
 
   class CoverCard extends HTMLElement {
@@ -91,6 +92,9 @@
       this.image = this.getAttribute("src");
       this.render();
       this.addEventListener("click", () => this.remove());
+
+      const atroposComponent = this.shadowRoot.querySelector("atropos-component");
+      setAnimation(atroposComponent);
     }
 
     render() {

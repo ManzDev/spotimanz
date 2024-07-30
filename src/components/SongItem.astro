@@ -3,6 +3,8 @@
 ---
 
 <script type="module">
+  import { setAnimation } from "/player/modules/setAnimation.js";
+
   class SongItem extends HTMLElement {
 
     constructor() {
@@ -25,6 +27,7 @@
           padding: 0.25rem 0.5rem;
           border-radius: 5px;
           user-select: none;
+          opacity: 0;
 
           @container songitem (width <= 1000px) {
             --playlist-format: 26px 1fr;
@@ -83,6 +86,8 @@
       this.index = Number(this.getAttribute("index"));
       this.image = `/player/playlist/${this.album.toLowerCase()}/${this.slug}.webp`;
       this.render();
+      const rowItem = this.shadowRoot.querySelector(".row-item");
+      setTimeout(() => setAnimation(rowItem, "FadeMove"), this.index * 25);
     }
 
     getData() {
