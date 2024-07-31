@@ -27,6 +27,10 @@
         atropos-component {
           --size: 512px;
 
+          @media (width <= 512px) {
+            --size: 350px;
+          }
+
           width: var(--size);
           height: var(--size);
           z-index: 5;
