@@ -80,6 +80,14 @@
     "duration": "02:38"
   },
   {
+    "title": "El navegador olvidado (SynthRock version)",
+    "artist": "ManzDev",
+    "slug": "el-navegador-olvidado-synthrock-version",
+    "album": "MetalDev",
+    "date": "2024-08-04T00:00:00",
+    "duration": "02:17"
+  },
+  {
     "title": "En mi local funcionaba (Pop Rock version)",
     "artist": "ManzDev",
     "slug": "en-mi-local-funcionaba-pop-rock-version",
@@ -88,12 +96,28 @@
     "duration": "03:58"
   },
   {
+    "title": "Yo ya soy inmortal (SynthMetal version)",
+    "artist": "ManzDev",
+    "slug": "yo-ya-soy-inmortal-synthmetal-version",
+    "album": "MetalDev",
+    "date": "2024-08-04T00:00:00",
+    "duration": "02:30"
+  },
+  {
     "title": "Ayudame Bootstrap (Rock version)",
     "artist": "ManzDev",
     "slug": "ayudame-bootstrap-rock-version",
     "album": "MetalDev",
     "date": "2024-06-23T00:00:00",
     "duration": "03:45"
+  },
+  {
+    "title": "El Guardián del Hipertexto (SynthRock version)",
+    "artist": "ManzDev",
+    "slug": "el-guardian-del-hipertexto-synthrock",
+    "album": "MetalDev",
+    "date": "2024-08-03T00:00:00",
+    "duration": "02:25"
   },
   {
     "title": "No quiero cambiar (Melodic Rock Version)",
