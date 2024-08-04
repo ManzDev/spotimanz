@@ -18,6 +18,10 @@ import TopSidebar from "./TopSidebar.astro";
     @media (width <= 1300px) {
       display: none;
     }
+
+    @media (height <= 700px) and (width >= 1300px) {
+      display: none;
+    }
   }
 
   .main-sidebar {

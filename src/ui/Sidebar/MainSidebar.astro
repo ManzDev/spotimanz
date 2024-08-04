@@ -47,6 +47,11 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
       }
 
     }
+
+    /* Patch */
+    height: 50px;
+    grid-template-rows: 1fr;
+    & .filters { display: none; }
   }
 
   .playlist-container {
@@ -79,7 +84,6 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
       flex-direction: column;
       gap: 0 0.5rem;
       padding: 0 0.5rem;
-      /* overflow-y: scroll; */
       max-width: 90vw;
 
       @media (width <= 1300px) {
@@ -94,6 +98,23 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
     .playlist::-webkit-scrollbar-track { background: transparent; }
 
   }
+
+  /*
+  @media (height <= 700px) and (width >= 1300px) {
+    .playlist-container {
+      --player-height: 125px;
+      margin-bottom: calc(var(--player-height) + 100px);
+    }
+    .playlist {
+      overflow-y: scroll;
+      height: 100%;
+
+      &::-webkit-scrollbar { width: 12px; }
+      &::-webkit-scrollbar-thumb { background: #fff6; border-radius: 0; }
+      &::-webkit-scrollbar-track { background: transparent; }
+    }
+  }
+  */
 </style>
 
 <div class="container">
