@@ -8,6 +8,14 @@
     "duration": "03:04"
   },
   {
+    "title": "No quiero cambiar (Dreamy Guitar Version)",
+    "artist": "ManzDev",
+    "slug": "no-quiero-cambiar-dreamy-guitar-version",
+    "album": "BeatDev",
+    "date": "2024-07-28T00:00:00",
+    "duration": "03:22"
+  },
+  {
     "title": "Amor imposible (Chilldance version)",
     "artist": "ManzDev",
     "slug": "amor-imposible-chilldance-version",
@@ -22,6 +30,22 @@
     "album": "BeatDev",
     "date": "2024-06-21T00:00:00",
     "duration": "03:43"
+  },
+  {
+    "title": "El Guardián del Hipertexto (Synthwave Remix)",
+    "artist": "ManzDev",
+    "slug": "el-guardian-del-hipertexto-synthwave-remix",
+    "album": "BeatDev",
+    "date": "2024-06-29T00:00:00",
+    "duration": "03:13"
+  },
+  {
+    "title": "Resolví el problema (Trance Remix)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-trance-remix",
+    "album": "BeatDev",
+    "date": "2024-07-14T00:00:00",
+    "duration": "03:26"
   },
   {
     "title": "En mi local funcionaba (Breakbeat Version)",
@@ -54,14 +78,6 @@
     "album": "BeatDev",
     "date": "2024-06-18T00:00:00",
     "duration": "02:28"
-  },
-  {
-    "title": "Resolví el problema (Trance Remix)",
-    "artist": "ManzDev",
-    "slug": "resolvi-el-problema-trance-remix",
-    "album": "BeatDev",
-    "date": "2024-07-14T00:00:00",
-    "duration": "03:26"
   },
   {
     "title": "Resolví el problema (Happy Beat version)",
