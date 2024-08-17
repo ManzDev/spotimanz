@@ -1,4 +1,5 @@
 ---
+import InstallButton from '@/components/InstallButton.astro';
 const { title } = Astro.props;
 ---
 
@@ -47,8 +48,16 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{ title }</title>
+    <link rel="manifest" href="/player/manifest.json">
 	</head>
 	<body>
 		<slot></slot>
+    <InstallButton />
 	</body>
 </html>
+
+<script>
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/player/sw.js')
+  })
+</script>
