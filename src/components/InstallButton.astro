@@ -1,27 +1,54 @@
 <div id="dialog-pwa">
-  <button id="install" type="button">
-    Instalar
-  </button>
-  <button id="cancel" type="button">
-    Cancelar
-  </button>
+  <p>Music Manz Player puede funcionar como PWA.</p>
+  <div>
+    <button id="install" type="button">
+      Instalar
+    </button>
+    <button id="cancel" type="button">
+      Cancelar
+    </button>
+  </div>
 </div>
 
 <style>
-  div {
+  #dialog-pwa {
     position: fixed;
     top: 0;
-    left: 50%;
+    left: 53%;
     translate: -50% -100%;
     padding: 14px 16px;
     background: var(--dark-bgcolor);
     display: flex;
     gap: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow:
+      0 0 25px #000c,
+      0 0 10px #0008;
     border-radius: 2px;
     transition: translate 0.3s ease-in-out;
     z-index: 100;
     pointer-events: none;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    border: 1px outset #00000077;
+    font-family: var(--default-font);
+    align-items: center;
+    color: #aaa;
+
+    @media (width <= 1300px) {
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 2.5rem;
+    }
+
+    & > div {
+      display: flex;
+      gap: 0 0.5rem;
+    }
+
+    & p {
+      margin: 0;
+      text-align: center;
+    }
 
     &.show {
       translate: -50% 30px;
@@ -35,24 +62,27 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
     font-family: var(--default-font);
-    transition: background 0.3s ease-in-out;
+    transition:
+      background 0.2s ease-in-out,
+      color 0.1s ease-in-out;
     cursor: pointer;
     border: none;
   }
 
   button#install {
-    background: var(--theme-color);
+    background: color-mix(in srgb, var(--theme-color) 50%, black);
 
     &:hover {
-      background: color-mix(in srgb, var(--theme-color) 70%, black);
+      background: var(--theme-color);
     }
   }
 
   button#cancel {
-    background: #121212;
+    background: transparent;
+    color: #aaa;
 
     &:hover {
-      background: color-mix(in srgb, #121212 60%, black);
+      color: #fff;
     }
   }
 </style>
@@ -68,13 +98,11 @@
       e.preventDefault()
 
       dialogPWA.classList.add('show')
-
       deferredPrompt = e
     })
 
     window.addEventListener('appinstalled', () => {
       deferredPrompt = null
-
       dialogPWA.classList.remove('show')
     })
 
@@ -83,18 +111,14 @@
 
       const { outcome } = await deferredPrompt.userChoice
 
-      console.log(await deferredPrompt.userChoice)
-
       if (outcome === 'accepted') {
         deferredPrompt = null
-
         dialogPWA.classList.remove('show')
       }
     })
 
     cancelBtn.addEventListener('click', () => {
       deferredPrompt = null
-
       dialogPWA.classList.remove('show')
     })
   })
