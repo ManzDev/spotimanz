@@ -1,0 +1,101 @@
+<div id="dialog-pwa">
+  <button id="install" type="button">
+    Instalar
+  </button>
+  <button id="cancel" type="button">
+    Cancelar
+  </button>
+</div>
+
+<style>
+  div {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    translate: -50% -100%;
+    padding: 14px 16px;
+    background: var(--dark-bgcolor);
+    display: flex;
+    gap: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    transition: translate 0.3s ease-in-out;
+    z-index: 100;
+    pointer-events: none;
+
+    &.show {
+      translate: -50% 30px;
+      pointer-events: auto;
+    }
+  }
+
+  button {
+    color: var(--light-textcolor);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--default-font);
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+    border: none;
+  }
+
+  button#install {
+    background: var(--theme-color);
+
+    &:hover {
+      background: color-mix(in srgb, var(--theme-color) 70%, black);
+    }
+  }
+
+  button#cancel {
+    background: #121212;
+
+    &:hover {
+      background: color-mix(in srgb, #121212 60%, black);
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener('load', () => {
+    const dialogPWA = document.querySelector('#dialog-pwa')
+    const installBtn = document.querySelector('#install')
+    const cancelBtn = document.querySelector('#cancel')
+    let deferredPrompt
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault()
+
+      dialogPWA.classList.add('show')
+
+      deferredPrompt = e
+    })
+
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = null
+
+      dialogPWA.classList.remove('show')
+    })
+
+    installBtn.addEventListener('click', async () => {
+      deferredPrompt.prompt()
+
+      const { outcome } = await deferredPrompt.userChoice
+
+      console.log(await deferredPrompt.userChoice)
+
+      if (outcome === 'accepted') {
+        deferredPrompt = null
+
+        dialogPWA.classList.remove('show')
+      }
+    })
+
+    cancelBtn.addEventListener('click', () => {
+      deferredPrompt = null
+
+      dialogPWA.classList.remove('show')
+    })
+  })
+</script>
