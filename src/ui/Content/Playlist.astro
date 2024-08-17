@@ -6,7 +6,7 @@ import SongItem from "@/components/SongItem.astro";
 <style>
   .playlist {
     --translucid-color: color-mix(in srgb, var(--medium-bgcolor), transparent 65%);
-    --playlist-format: 40px 1fr 0.7fr 0.7fr 0.1fr;
+    --playlist-format: 40px 1fr 0.7fr 0.7fr 0.1fr 42px;
 
     display: flex;
     flex-direction: column;
@@ -62,6 +62,7 @@ import SongItem from "@/components/SongItem.astro";
     <div class="cell">Álbum</div>
     <div class="cell">Fecha en la que se añadió</div>
     <div class="cell"><Icon name="clock" /></div>
+    <div class="cell"></div>
   </header>
   <hr>
 

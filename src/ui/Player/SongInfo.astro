@@ -63,7 +63,7 @@ const artist = "ManzDev";
 
   document.addEventListener("player:update-info", ({ detail }) => {
     // console.log({ detail });
-    const { title, artist, slug, album } = detail;
+    const { songData: { title, artist, slug, album }, autoplay } = detail;
 
     const container = document.querySelector(".song-info-container");
     const titleTag = container.querySelector(".title");
@@ -76,7 +76,7 @@ const artist = "ManzDev";
     imageTag.alt = title;
     document.body.style.setProperty("--song-image", `url(${imageTag.src})`);
 
-    addCoverCard(imageTag.src);
+    autoplay && addCoverCard(imageTag.src);
   });
 </script>
 

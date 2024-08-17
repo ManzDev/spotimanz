@@ -5,10 +5,16 @@ import { togglePlayIcon } from "./ui/play.js";
 import { shuffle } from "./shuffle.js";
 import { MusicList } from "./MusicList.js";
 
+const getPlaylistInfo = (playlistName) => {
+  const playlists = [...document.querySelectorAll(".playlist-item")];
+  const selectedPlaylist = playlists.find(playlist => playlist.dataset.id === playlistName);
+  const color = selectedPlaylist.dataset.color;
+  const title = selectedPlaylist.querySelector(".title").textContent;
+  return { color, title };
+}
+
 const shuffleButton = document.querySelector(".song-player-container .shuffle");
 const repeatButton = document.querySelector(".song-player-container .repeat");
-
-const DEFAULT_PLAYLIST = "musicdev";
 
 export class MusicPlayer {
   songList = [];
@@ -17,15 +23,23 @@ export class MusicPlayer {
   musicList = new MusicList();
   globalVolume = 1;
 
-  constructor() {
-    this.musicList.get(DEFAULT_PLAYLIST).then(songs => {
+  constructor(playlistName = "musicdev", id = 1) {
+    this.musicList.get(playlistName).then(songs => {
+
+      if ((id > songs.length) || (id < 1) || (isNaN(Number(id)))) {
+        id = 1;
+      }
+      const { color, title } = getPlaylistInfo(playlistName);
+      this.selectList(playlistName, title, color);
+
       const [currentTimeTag, durationTag] = document.querySelectorAll(".song-player-container time");
       this.durationTag = durationTag;
       this.updateList(songs);
       this.setSongs(songs);
-      this.prepare(0);
+      this.prepare(id - 1);
       this.init();
       this.updateList(songs);
+      this.sendInfo({ autoplay: false });
     });
   }
 
@@ -200,7 +214,10 @@ export class MusicPlayer {
     this.togglePlayPause(true);
   }
 
-  sendInfo() {
-    emitEvent("player:update-info", document, this.songList[this.currentSongIndex]);
+  sendInfo(options = { autoplay: true }) {
+    emitEvent("player:update-info", document, {
+      autoplay: options.autoplay,
+      songData: this.songList[this.currentSongIndex]
+    });
   }
 }

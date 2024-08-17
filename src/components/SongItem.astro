@@ -18,6 +18,10 @@
           container: songitem / inline-size;
         }
 
+        .icon {
+          scale: 0.6;
+        }
+
         .row-item {
           display: grid;
           grid-template-columns: var(--playlist-format);
@@ -34,7 +38,8 @@
 
             & div:nth-child(3),
             & div:nth-child(4),
-            & div:nth-child(5) { display: none }
+            & div:nth-child(5),
+            & .icon { display: none }
           }
 
           & > div:nth-child(4) {
@@ -117,6 +122,7 @@
           <div>${this.album}</div>
           <div>${this.date.substring(0, 10)}</div>
           <div>${this.duration}</div>
+          <a class="icon" href="#${this.album.toLowerCase()}-${this.index+1}"><img src="/player/icons/link.svg"></a>
         </div>
       `;
     }
