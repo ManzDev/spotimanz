@@ -3,5 +3,6 @@
   { "slug": "metaldev", "title": "MetalDev", "subtitle": "Lista - Metal/Rock", "pinned": false, "color": "#ff0200" },
   { "slug": "chilldev", "title": "ChillDev", "subtitle": "Lista - Chill/Synth", "pinned": false, "color": "#0dbce7" },
   { "slug": "beatdev", "title": "BeatDev", "subtitle": "Lista - Happy/Beat", "pinned": false, "color": "#08d437" },
-  { "slug": "rhythmdev", "title": "RhythmDev", "subtitle": "Lista - Funk/Dance", "pinned": false, "color": "#dccf08" }
+  { "slug": "rhythmdev", "title": "RhythmDev", "subtitle": "Lista - Funk/Dance", "pinned": false, "color": "#dccf08" },
+  { "slug": "xmas2024", "title": "Xmas2024", "subtitle": "Lista - Navidad 2024", "pinned": false, "color": "#2ab240" }
 ]
