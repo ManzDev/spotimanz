@@ -85,11 +85,16 @@ const sortRule = (a, b) => a.pinned ? -1 : 1;
       gap: 0 0.5rem;
       padding: 0 0.5rem;
       max-width: 90vw;
-
+      overflow-y: scroll;
+      max-height: calc(100vh - 350px);
+      @media (height <= 700px) and (width >= 1300px) {
+        max-height: calc(100vh - 300px);
+      }
       @media (width <= 1300px) {
         display: grid;
         grid-auto-flow: column dense;
         overflow-x: scroll;
+        overflow-y: auto;
       }
     }
 
