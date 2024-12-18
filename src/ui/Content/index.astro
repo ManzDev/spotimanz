@@ -11,11 +11,14 @@ import ListHeader from "./ListHeader.astro";
     display: grid;
     background: linear-gradient(to bottom, var(--theme-color), var(--dark-theme-color) 60%);
     border-radius: var(--border-radius);
-    max-height: 82vh;
+    max-height: calc(100vh - (var(--player-height) + 50px));
     overflow-y: scroll;
 
     @media (width <= 1300px) {
       height: calc(100% - 250px - 20px);
+    }
+    @media (width <= 767px) {
+      height: calc(100% - 250px);
     }
 
     &::before {
