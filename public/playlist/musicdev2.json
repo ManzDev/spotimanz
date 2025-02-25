@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Me da igual",
+    "artist": "ManzDev",
+    "slug": "me-da-igual",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "03:04"
+  },
+  {
+    "title": "Hice un benchmark",
+    "artist": "ManzDev",
+    "slug": "hice-un-benchmark",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:48"
+  },
+  {
+    "title": "Preludio melódico (PM)",
+    "artist": "ManzDev",
+    "slug": "prelude-melodies",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "01:25"
+  },
+  {
+    "title": "Somos la secta de Astro",
+    "artist": "ManzDev",
+    "slug": "somos-la-secta-de-astro",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:51"
+  },
+  {
+    "title": "El guardián del Hipertexto (Synth Metal Mix)",
+    "artist": "ManzDev",
+    "slug": "el-guardian-del-hipertexto-synthmetal-mix",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "03:23"
+  },
+  {
+    "title": "Skill Issue",
+    "artist": "ManzDev",
+    "slug": "skill-issue",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:40"
+  },
+  {
+    "title": "No quiero cambiar (Dream Pop Remaster)",
+    "artist": "ManzDev",
+    "slug": "no-quiero-cambiar-dream-pop-remaster",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:13"
+  },
+  {
+    "title": "Me da igual (carta abierta)",
+    "artist": "ManzDev",
+    "slug": "me-da-igual-carta-abierta",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:45"
+  },
+  {
+    "title": "En mi local funcionaba (Orchestral Cover version)",
+    "artist": "ManzDev",
+    "slug": "en-mi-local-funcionaba-orchestral-cover-version",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "01:44"
+  },
+  {
+    "title": "We wish you a Javaschristmas (A capella version)",
+    "artist": "ManzDev",
+    "slug": "we-wish-you-a-javaschristmas-a-capella-version",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:29"
+  },
+  {
+    "title": "Resolví el problema (Chillsynth Mento Remaster)",
+    "artist": "ManzDev",
+    "slug": "resolvi-el-problema-chillsynth-mento-remaster",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "03:22"
+  },
+  {
+    "title": "ChatGPT Rap",
+    "artist": "ManzDev",
+    "slug": "chatgpt-rap",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:55"
+  },
+  {
+    "title": "Async/Kawaii",
+    "artist": "ManzDev",
+    "slug": "async-kawaii",
+    "album": "MusicDev2",
+    "date": "2024-12-23T00:00:00",
+    "duration": "02:16"
+  }
+]
