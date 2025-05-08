@@ -122,6 +122,28 @@ export class MusicPlayer {
     });
   }
 
+  updateMediaSession() {
+    if (!('mediaSession' in navigator)) return;
+
+    const song = this.songList[this.currentSongIndex];
+
+    // Set metadata for the current song
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: song.title,
+      artist: song.artist,
+      album: song.album,
+      artwork: [
+        { src: `/player/playlist/${song.album.toLowerCase()}/${song.slug}.webp`, sizes: '512x512', type: 'image/webp' }
+      ]
+    });
+
+    // Set action handlers for media controls
+    navigator.mediaSession.setActionHandler('play', () => this.play());
+    navigator.mediaSession.setActionHandler('pause', () => this.play());
+    navigator.mediaSession.setActionHandler('previoustrack', () => this.prev());
+    navigator.mediaSession.setActionHandler('nexttrack', () => this.next());
+  }
+
   setSongs(songs) {
     this.songList = songs.map((song, index) => ({ ...song, index }));
     if (this.isShuffle) this.sortSongs();
@@ -143,6 +165,8 @@ export class MusicPlayer {
     const song = this.songList[this.currentSongIndex];
     this.currentSong.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.mp3`;
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
+
+    this.updateMediaSession();
   }
 
   play() {
