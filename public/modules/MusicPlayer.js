@@ -144,6 +144,59 @@ export class MusicPlayer {
     navigator.mediaSession.setActionHandler('nexttrack', () => this.next());
   }
 
+  enablePictureInPicture() {
+    if (!document.pictureInPictureEnabled) return;
+
+    // Create a hidden video element for PiP
+    if (!this.pipVideoElement) {
+      // Create a canvas to generate a "fake" video track
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 512;
+
+      const ctx = canvas.getContext("2d");
+      const song = this.songList[this.currentSongIndex];
+
+      // Draw album artwork or a placeholder
+      const img = new Image();
+      img.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.webp`;
+      img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // Create a video element and use the canvas as its source
+      this.pipVideoElement = document.createElement("video");
+      this.pipVideoElement.srcObject = canvas.captureStream(); // Use the canvas as a video source
+      this.pipVideoElement.style.display = "none"; // Hide the video element
+      document.body.appendChild(this.pipVideoElement);
+    }
+
+    // Play the video and request PiP
+    this.pipVideoElement.play().then(() => {
+      this.pipVideoElement.requestPictureInPicture();
+    });
+
+    // Clean up when leaving PiP
+    this.pipVideoElement.addEventListener("leavepictureinpicture", () => {
+      this.pipVideoElement.pause();
+      this.pipVideoElement.remove();
+      this.pipVideoElement = null;
+    });
+  }
+
+  updatePictureInPicture() {
+    if (!this.pipVideoElement) return;
+
+    const canvas = this.pipVideoElement.srcObject.getVideoTracks()[0].canvas;
+    const ctx = canvas.getContext("2d");
+    const song = this.songList[this.currentSongIndex];
+
+    // Clear the canvas and draw the new album artwork
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const img = new Image();
+    img.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.webp`;
+    img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  }
+
   setSongs(songs) {
     this.songList = songs.map((song, index) => ({ ...song, index }));
     if (this.isShuffle) this.sortSongs();
@@ -167,10 +220,12 @@ export class MusicPlayer {
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
 
     this.updateMediaSession();
+    this.updatePictureInPicture();
   }
 
   play() {
     this.updateVolume();
+
     if (this.currentSong.paused) {
       const isResume = this.currentSong.currentTime < 1;
       this.currentSong.play();
