@@ -180,6 +180,17 @@ export class MusicPlayer {
       this.pipVideoElement.remove();
       this.pipVideoElement = null;
     });
+
+    // Update PiP controls
+    this.pipVideoElement.addEventListener("play", () => {
+      this.play();
+      this.updateUI();
+    });
+
+    this.pipVideoElement.addEventListener("pause", () => {
+      this.play(); // Toggles play/pause
+      this.updateUI();
+    });
   }
 
   updatePictureInPicture() {
@@ -195,6 +206,28 @@ export class MusicPlayer {
     const img = new Image();
     img.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.webp`;
     img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  }
+
+  updateUI() {
+    // Update play/pause button
+    const playButton = document.querySelector(".song-player-container .play");
+    const isPlaying = !this.currentSong.paused;
+    playButton.querySelector(".play").hidden = isPlaying;
+    playButton.querySelector(".pause").hidden = !isPlaying;
+
+    // Update Media Session playback state
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+    }
+
+    // Update Picture-in-Picture state (if needed)
+    if (this.pipVideoElement) {
+      if (isPlaying && this.pipVideoElement.paused) {
+        this.pipVideoElement.play();
+      } else if (!isPlaying && !this.pipVideoElement.paused) {
+        this.pipVideoElement.pause();
+      }
+    }
   }
 
   setSongs(songs) {
@@ -236,6 +269,7 @@ export class MusicPlayer {
       this.currentSong.pause();
 
     this.togglePlayPause();
+    this.updateUI();
   }
 
   updateVolume() {
@@ -261,6 +295,8 @@ export class MusicPlayer {
       this.nextList();
     else
       this.nextSong();
+
+    this.updateUI();
   }
 
   nextSong() {
@@ -291,6 +327,7 @@ export class MusicPlayer {
     this.prepare(index);
     this.play();
     this.togglePlayPause(true);
+    this.updateUI();
   }
 
   sendInfo(options = { autoplay: true }) {
