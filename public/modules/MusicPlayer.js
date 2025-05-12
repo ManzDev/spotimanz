@@ -122,7 +122,7 @@ export class MusicPlayer {
     });
   }
 
-  updateMediaSession() {
+  enableMediaSession() {
     if (!('mediaSession' in navigator)) return;
 
     const song = this.songList[this.currentSongIndex];
@@ -139,14 +139,12 @@ export class MusicPlayer {
 
     // Set action handlers for media controls
     navigator.mediaSession.setActionHandler('play', () => {
-      console.log('Play', this.currentSong.paused);
       if (this.currentSong.paused) {
         this.play();
         this.updateUI();
       }
     });
     navigator.mediaSession.setActionHandler('pause', () => {
-      console.log('Pause', this.currentSong.paused);
       if (!this.currentSong.paused) {
         this.play();
         this.updateUI();
@@ -268,7 +266,7 @@ export class MusicPlayer {
     this.currentSong.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.mp3`;
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
 
-    this.updateMediaSession();
+    this.enableMediaSession();
     this.updatePictureInPicture();
   }
 
@@ -286,7 +284,7 @@ export class MusicPlayer {
 
     this.togglePlayPause();
     this.updateUI();
-    this.updateMediaSession();
+    this.enableMediaSession();
     this.updatePictureInPicture();
   }
 
