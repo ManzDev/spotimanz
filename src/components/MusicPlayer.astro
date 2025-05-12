@@ -2,19 +2,7 @@
 ---
 <script type="module">
   import { emitEvent } from "/player/modules/emitter.js";
-  import { MusicPlayer } from "/player/modules/MusicPlayer.js";
-
-  const getURLData = () => {
-    const anchor = new URL(location.href).hash.toLowerCase().substring(1) || "musicdev-0";
-    const [playlistName, id] = anchor.split("-");
-    return {
-      playlistName: playlistName ?? "musicdev",
-      id: Number(id) ?? 0
-    }
-  }
-
-  const { playlistName, id } = getURLData();
-  const musicPlayer = new MusicPlayer(playlistName, id);
+  import { musicPlayer } from "/player/modules/playerInstance.js";
 
   const buttons = {
     play: document.querySelector(".song-player-container .play"),

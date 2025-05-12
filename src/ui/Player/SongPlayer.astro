@@ -78,6 +78,7 @@ import ProgressSlider from "@/components/ProgressSlider.astro";
 
 <div class="song-player-container">
   <div class="buttons">
+    <button id="pip-button">Picture-in-Picture</button>
     <button class="shuffle disabled"><Icon name="shuffle" /></button>
     <button class="prev"><Icon name="backward" /></button>
     <button class="play circle">
@@ -94,3 +95,13 @@ import ProgressSlider from "@/components/ProgressSlider.astro";
     <time>00:00</time>
   </div>
 </div>
+
+<script type="module">
+  import { musicPlayer } from "/player/modules/playerInstance.js";
+
+  const pipButton = document.getElementById("pip-button");
+
+  pipButton.addEventListener("click", () => {
+    musicPlayer.enablePictureInPicture();
+  });
+</script>
