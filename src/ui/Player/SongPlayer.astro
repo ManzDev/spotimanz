@@ -18,9 +18,10 @@ import ProgressSlider from "@/components/ProgressSlider.astro";
       display: inline-grid;
       justify-items: center;
       align-items: center;
-      grid-template-columns: repeat(2, 50px) 64px repeat(2, 50px);
+      grid-template-columns: repeat(2, 50px) 64px repeat(3, 50px);
       grid-template-rows: 1fr;
       margin: auto;
+      translate: 17px 0;
 
       & button {
         cursor: pointer;
@@ -78,7 +79,6 @@ import ProgressSlider from "@/components/ProgressSlider.astro";
 
 <div class="song-player-container">
   <div class="buttons">
-    <button id="pip-button">Picture-in-Picture</button>
     <button class="shuffle disabled"><Icon name="shuffle" /></button>
     <button class="prev"><Icon name="backward" /></button>
     <button class="play circle">
@@ -87,6 +87,7 @@ import ProgressSlider from "@/components/ProgressSlider.astro";
     </button>
     <button class="next"><Icon name="forward" /></button>
     <button class="repeat disabled"><Icon name="repeat" /></button>
+    <button id="pip-button"><Icon name="pip" size={18} /></button>
     <!-- button class="view-card disabled"><Icon name="cards" /></button -->
   </div>
   <div class="time-container">
