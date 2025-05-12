@@ -138,8 +138,20 @@ export class MusicPlayer {
     });
 
     // Set action handlers for media controls
-    navigator.mediaSession.setActionHandler('play', () => this.play());
-    navigator.mediaSession.setActionHandler('pause', () => this.play());
+    navigator.mediaSession.setActionHandler('play', () => {
+      console.log('Play', this.currentSong.paused);
+      if (this.currentSong.paused) {
+        this.play();
+        this.updateUI();
+      }
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      console.log('Pause', this.currentSong.paused);
+      if (!this.currentSong.paused) {
+        this.play();
+        this.updateUI();
+      }
+    });
     navigator.mediaSession.setActionHandler('previoustrack', () => this.prev());
     navigator.mediaSession.setActionHandler('nexttrack', () => this.next());
   }
@@ -183,13 +195,17 @@ export class MusicPlayer {
 
     // Update PiP controls
     this.pipVideoElement.addEventListener("play", () => {
-      this.play();
-      this.updateUI();
+      if (this.currentSong.paused) {
+        this.play();
+        this.updateUI();
+      }
     });
 
     this.pipVideoElement.addEventListener("pause", () => {
-      this.play(); // Toggles play/pause
-      this.updateUI();
+      if (!this.currentSong.paused) {
+        this.play();
+        this.updateUI();
+      }
     });
   }
 
@@ -270,6 +286,8 @@ export class MusicPlayer {
 
     this.togglePlayPause();
     this.updateUI();
+    this.updateMediaSession();
+    this.updatePictureInPicture();
   }
 
   updateVolume() {
@@ -304,6 +322,7 @@ export class MusicPlayer {
     this.prepare(index);
     this.play();
     this.togglePlayPause(true);
+    this.updateUI();
   }
 
   async nextList(forcePlay = true) {
