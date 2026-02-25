@@ -19,7 +19,17 @@
         }
 
         .icon {
-          scale: 0.6;
+          --size: fit-content;
+          width: var(--size);
+          height: var(--size);
+          padding: 0.25rem;
+          border-radius: 5px;
+          line-height: 0;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #ffffff15;
+          }
         }
 
         .row-item {
@@ -108,7 +118,25 @@
       };
     }
 
+    preventPlayback() {
+      const downloadSong = this.shadowRoot.querySelector('.download');
+      downloadSong.addEventListener("click", event => event.stopPropagation());
+    }
+
+    sanitizeTitle(title) {
+      return title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[()]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .replace(/-{2,}/g, "-");
+    }
+
     render() {
+      const sanitizedTitle = this.sanitizeTitle(this.title);
+
       this.shadowRoot.innerHTML = /* html */`
         <style>${SongItem.styles}</style>
         <div class="row-item" data-id=${this.index}>
@@ -123,9 +151,16 @@
           <div>${this.album}</div>
           <div>${this.date.substring(0, 10)}</div>
           <div>${this.duration}</div>
-          <a class="icon" href="#${this.album.toLowerCase()}-${this.index+1}"><img src="/player/icons/link.svg"></a>
+          <a class="icon" href="#${this.album.toLowerCase()}-${this.index+1}">
+              <img src="/player/icons/link.svg" width="18" height="18">
+          </a>
+          <a class="icon download" href="/player/playlist/${this.album.toLowerCase()}/${sanitizedTitle}.mp3" download>
+            <img src="/player/icons/download.svg" width="18" height="18">
+          </a>
         </div>
       `;
+
+      this.preventPlayback();
     }
 
   }
