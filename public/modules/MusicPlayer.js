@@ -23,7 +23,8 @@ export class MusicPlayer {
   musicList = new MusicList();
   globalVolume = 1;
 
-  constructor(playlistName = "musicdev", id = 1) {
+  constructor(initName = "musicdev", id = 1) {
+    const playlistName = initName.replaceAll(" ", "-");
     this.musicList.get(playlistName).then(songs => {
 
       if ((id > songs.length) || (id < 1) || (isNaN(Number(id)))) {
@@ -263,7 +264,12 @@ export class MusicPlayer {
     if (this.songList.length === 0) return;
     this.currentSongIndex = index;
     const song = this.songList[this.currentSongIndex];
-    this.currentSong.src = `/player/playlist/${song.album.toLowerCase()}/${song.slug}.mp3`;
+    const albumSlug = song.album
+      .toLowerCase()
+      .replace("(", "")
+      .replace(")", "")
+      .replaceAll(" ", "-");
+    this.currentSong.src = `/player/playlist/${albumSlug}/${song.slug}.mp3`;
     this.durationTag.textContent = this.songList[this.currentSongIndex].duration;
 
     this.enableMediaSession();

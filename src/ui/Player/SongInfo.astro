@@ -56,23 +56,31 @@ const artist = "ManzDev";
     const coverCard = document.createElement("cover-card");
     coverCard.setAttribute("src", link);
     document.body.append(coverCard);
-  }
+  };
 
   const image = document.querySelector(".song-info-container img");
   image.addEventListener("click", () => addCoverCard(image.src));
 
   document.addEventListener("player:update-info", ({ detail }) => {
     // console.log({ detail });
-    const { songData: { title, artist, slug, album }, autoplay } = detail;
+    const {
+      songData: { title, artist, slug, album },
+      autoplay,
+    } = detail;
 
     const container = document.querySelector(".song-info-container");
     const titleTag = container.querySelector(".title");
     const artistTag = container.querySelector(".artist");
     const imageTag = container.querySelector("img");
+    const albumSlug = album
+      .toLowerCase()
+      .replace("(", "")
+      .replace(")", "")
+      .replaceAll(" ", "-");
 
     titleTag.textContent = title;
     artistTag.textContent = artist;
-    imageTag.src = `/player/playlist/${album.toLowerCase()}/${slug}.webp`;
+    imageTag.src = `/player/playlist/${albumSlug}/${slug}.webp`;
     imageTag.alt = title;
     document.body.style.setProperty("--song-image", `url(${imageTag.src})`);
 
@@ -82,7 +90,7 @@ const artist = "ManzDev";
 
 <div class="song-info-container">
   <div class="avatar-song">
-    <img src="/player/playlist/musicdev/no-quiero-cambiar.webp" alt="">
+    <img src="/player/playlist/musicdev/no-quiero-cambiar.webp" alt="" />
   </div>
   <p class="title">{title}</p>
   <p class="artist">{artist}</p>

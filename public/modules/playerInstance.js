@@ -2,7 +2,11 @@ import { MusicPlayer } from "./MusicPlayer.js";
 
 const getURLData = () => {
   const anchor = new URL(location.href).hash.toLowerCase().substring(1) || "musicdev-0";
-  const [playlistName, id] = anchor.split("-");
+
+  const pos = anchor.lastIndexOf("-");
+  const playlistName = anchor.slice(0, pos);
+  const id = anchor.slice(pos + 1);
+
   return {
     playlistName: playlistName ?? "musicdev",
     id: Number(id) ?? 0
