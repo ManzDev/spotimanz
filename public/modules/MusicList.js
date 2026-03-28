@@ -1,7 +1,7 @@
 export class MusicList {
 
   playLists = {};
-  currentId = "musicdev";
+  currentId = "bootcamp-a-side";
 
   async get(slug) {
     if (!this.playLists[slug]) {

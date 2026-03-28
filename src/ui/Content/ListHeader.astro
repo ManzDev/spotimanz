@@ -16,7 +16,7 @@ import BalloonButton from "@/components/BalloonButton.astro";
     }
 
     static get styles() {
-      return /* css */`
+      return /* css */ `
         :host {
           mix-blend-mode: normal;
           z-index: 5;
@@ -121,29 +121,41 @@ import BalloonButton from "@/components/BalloonButton.astro";
     }
 
     setData(title, songs) {
-      const slug = title.toLowerCase();
+      const slug = title
+        .toLowerCase()
+        .replace("(", "")
+        .replace(" ", "-")
+        .replace(")", "");
       const total = songs.length;
       const duration = songs
-        .map(song => convertToSeconds(song.duration))
+        .map((song) => convertToSeconds(song.duration))
         .reduce((first, acc) => first + acc, 0);
       const [min] = formatTime(duration).split(":");
       const time = `${min} min `;
-      this.shadowRoot.querySelector("img.cover").src = `/player/playlist/${slug}.webp`;
+      this.shadowRoot.querySelector("img.cover").src =
+        `/player/playlist/${slug}.webp`;
       this.shadowRoot.querySelector("h1").textContent = title;
-      this.shadowRoot.querySelector(".info-subtitle").textContent = `ManzDev · ${total} canciones,`;
-      this.shadowRoot.querySelector(".total-duration").textContent = `${time} de duración aproximadamente`;
+      this.shadowRoot.querySelector(".info-subtitle").textContent =
+        `ManzDev · ${total} canciones,`;
+      this.shadowRoot.querySelector(".total-duration").textContent =
+        `${time} de duración aproximadamente`;
     }
 
     connectedCallback() {
       this.render();
 
-      const [prevButton, nextButton] = this.shadowRoot.querySelectorAll("balloon-button");
-      prevButton.addEventListener("click", () => emitEvent("list:prev", document, null));
-      nextButton.addEventListener("click", () => emitEvent("list:next", document, null));
+      const [prevButton, nextButton] =
+        this.shadowRoot.querySelectorAll("balloon-button");
+      prevButton.addEventListener("click", () =>
+        emitEvent("list:prev", document, null),
+      );
+      nextButton.addEventListener("click", () =>
+        emitEvent("list:next", document, null),
+      );
     }
 
     render() {
-      this.shadowRoot.innerHTML = /* html */`
+      this.shadowRoot.innerHTML = /* html */ `
         <style>${ListHeader.styles}</style>
         <header>
           <div class="top">
