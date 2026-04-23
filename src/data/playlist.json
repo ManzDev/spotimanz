@@ -3,7 +3,7 @@
   { "slug": "musicdev2", "title": "MusicDev2", "subtitle": "2025 - MusicDev v2", "pinned": false, "color": "#9708ef" },
   { "slug": "bootcamp-a-side", "title": "Bootcamp (A-side)", "subtitle": "2026 - Bootcamp OST", "pinned": false, "color": "#3f0b40" },
   { "slug": "bootcamp-b-side", "title": "Bootcamp (B-side)", "subtitle": "2026 - Bootcamp OST", "pinned": false, "color": "#9734ba" },
-  { "slug": "undertune", "title": "Undertune", "subtitle": "2026 - Chiptunes 8-bits", "pinned": false, "color": "#827311" },
+  { "slug": "undertune", "title": "Undertune", "subtitle": "2026 - Chiptunes 8-bits", "pinned": false, "color": "#ba5113" },
   { "slug": "metaldev", "title": "MetalDev", "subtitle": "2024 - Metal/Rock", "pinned": false, "color": "#ff0200" },
   { "slug": "chilldev", "title": "ChillDev", "subtitle": "2024 - Chill/Synth", "pinned": false, "color": "#0dbce7" },
   { "slug": "beatdev", "title": "BeatDev", "subtitle": "2024 - Happy/Beat", "pinned": false, "color": "#08d437" },
